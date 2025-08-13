@@ -1,5 +1,6 @@
 // src/components/QuickMenu.jsx
 import React, {useState} from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import MenuItem from './MenuItem';
 
 // 1. 아이콘 이미지들을 모두 import 합니다.
@@ -53,6 +54,8 @@ const ArrowDown = () => (
 );
 
 const QuickMenu = ({ onPriceClick }) => {
+	const navigate = useNavigate();
+	const location = useLocation();
 	// 1. 메뉴가 열렸는지(true) 닫혔는지(false)를 기억하는 상태를 만듭니다.
 	const [isExpanded, setIsExpanded] = useState(true);
 
@@ -61,12 +64,29 @@ const QuickMenu = ({ onPriceClick }) => {
 		setIsExpanded(!isExpanded);
 	};
 
+	const handlePriceClick = () => {
+		if (location.pathname === '/') {
+			// 메인 페이지에서는 스크롤
+			if (onPriceClick) {
+				onPriceClick();
+			}
+		} else {
+			// 다른 페이지에서는 메인 페이지의 가격 섹션으로 이동
+			navigate('/#pricing');
+		}
+	};
+
+	const handleKakaoClick = () => {
+		// TODO: 카카오톡 문의 기능 구현 예정
+		alert('카카오톡 문의 기능은 공사 중입니다.');
+	};
+
 	const menuItems = [
-		{ id: 'inquire', altText: '도입문의', defaultIcon: inquireDefault, hoverIcon: inquireHover },
-		{ id: 'kakao', altText: '카카오톡문의', defaultIcon: kakaoDefault, hoverIcon: kakaoHover },
-		{ id: 'price', altText: '금액조회', defaultIcon: priceDefault, hoverIcon: priceHover, onClick: onPriceClick },
-		{ id: 'notice', altText: '공지사항', defaultIcon: noticeDefault, hoverIcon: noticeHover },
-		{ id: 'event', altText: '이벤트', defaultIcon: eventDefault, hoverIcon: eventHover },
+		{ id: 'inquire', altText: '도입문의', defaultIcon: inquireDefault, hoverIcon: inquireHover, onClick: () => navigate('/inquiry') },
+		{ id: 'kakao', altText: '카카오톡문의', defaultIcon: kakaoDefault, hoverIcon: kakaoHover, onClick: handleKakaoClick },
+		{ id: 'price', altText: '금액조회', defaultIcon: priceDefault, hoverIcon: priceHover, onClick: handlePriceClick },
+		{ id: 'notice', altText: '공지사항', defaultIcon: noticeDefault, hoverIcon: noticeHover, onClick: () => navigate('/notice') },
+		{ id: 'event', altText: '이벤트', defaultIcon: eventDefault, hoverIcon: eventHover, onClick: () => navigate('/event') },
 	];
 
 	return (
