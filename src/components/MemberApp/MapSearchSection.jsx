@@ -23,7 +23,8 @@ function MapSearchSection() {
 	return (
 		<div className="flex flex-col justify-start items-center w-full relative gap-16">
 			{/* 상단 헤더 */}
-			<div className="flex flex-col justify-start items-start w-full max-w-[1536px] gap-2 border-l-4 border-[#e6e6e6]">
+			<div className="flex flex-col justify-start items-start w-full max-w-[1536px] gap-2 border-l-4 border-[#e6e6e6]"
+			     style={{fontFamily: 'esamanru, sans-serif'}}>
 				<div className="flex justify-start items-start self-stretch relative gap-2.5 px-8">
 					<p className="text-6xl font-medium text-left">
 						<span className="text-[#4ab3bc]">가까운 센터</span>

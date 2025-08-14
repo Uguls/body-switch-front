@@ -90,7 +90,7 @@ const QuickMenu = ({ onPriceClick }) => {
 	];
 
 	return (
-		<div className="fixed top-1/2 right-6 -translate-y-1/2 z-50 flex flex-col items-center p-2 rounded-xl bg-white/90 backdrop-blur-sm shadow-2xl">
+		<div className="fixed top-1/2 right-2 sm:right-4 lg:right-6 -translate-y-1/2 z-50 flex flex-col items-center p-1 sm:p-2 rounded-xl bg-white/90 backdrop-blur-sm shadow-2xl scale-75 sm:scale-90 lg:scale-100">
 			{/* 3. isExpanded 상태에 따라 다른 내용을 보여줍니다. */}
 			{isExpanded ? (
 				// 메뉴가 열렸을 때 (Expanded View)
@@ -117,7 +117,7 @@ const QuickMenu = ({ onPriceClick }) => {
 				// 메뉴가 닫혔을 때 (Collapsed View)
 				<>
 					<Logo />
-					<p className="w-[59px] text-[19px] font-semibold text-center text-[#108389]">
+					<p className="w-[50px] sm:w-[59px] text-base sm:text-[19px] font-semibold text-center text-[#108389]">
 						QUICK
 					</p>
 					<div onClick={toggleMenu}>

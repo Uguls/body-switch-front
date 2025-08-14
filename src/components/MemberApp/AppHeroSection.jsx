@@ -124,10 +124,12 @@ const AppHeroSection = () => {
 				{/* 왼쪽 섹션: 타이틀 및 앱 다운로드 */}
 				<div className="w-full lg:w-1/2 flex flex-col justify-center items-start lg:pl-48">
 					<div className="flex flex-col justify-start items-start gap-4 text-white">
-						<p className="text-4xl md:text-[56px] text-left">
+						<p className="text-4xl md:text-[56px] text-left"
+						   style={{fontFamily: 'Inklipquid, sans-serif'}}>
 							더 쉬운 관리 더 큰 성공
 						</p>
-						<p className="text-6xl md:text-[80px] font-medium text-left">
+						<p className="text-6xl md:text-[80px] font-medium text-left"
+						   style={{fontFamily: 'esamanru, sans-serif'}}>
 							회원 ∙ 강사 APP
 						</p>
 					</div>

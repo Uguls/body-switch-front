@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 const Header = () => {
 	const location = useLocation();
 	return (
-		<header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-48 py-6 bg-white/60 backdrop-blur-[20px]">
+		<header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-48 py-4 md:py-6 bg-white/60 backdrop-blur-[20px]">
 			{/* 로고 SVG */}
 			<Link to="/">
 				<svg
@@ -13,7 +13,7 @@ const Header = () => {
 				viewBox="0 0 256 48"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				className="flex-grow-0 flex-shrink-0 w-64 h-12 relative"
+				className="w-32 h-6 sm:w-40 sm:h-7 md:w-48 md:h-9 lg:w-56 lg:h-10 xl:w-64 xl:h-12"
 				preserveAspectRatio="none"
 			>
 				<path
@@ -57,28 +57,28 @@ const Header = () => {
 			</Link>
 
 			{/* 네비게이션 메뉴 */}
-			<div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-16">
-				<div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-16">
+			<div className="hidden md:flex justify-start items-center flex-grow-0 flex-shrink-0 gap-4 lg:gap-8 xl:gap-16">
+				<div className="flex justify-start items-center flex-grow-0 flex-shrink-0 gap-4 lg:gap-8 xl:gap-16">
 					<Link to="/" className={`flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 py-3 border-t-0 border-r-0 border-b-2 border-l-0 ${location.pathname === '/' ? 'border-[#4ab3bc]' : 'border-transparent'}`}>
-						<p className={`flex-grow-0 flex-shrink-0 text-lg font-bold text-left ${location.pathname === '/' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>
+						<p className={`flex-grow-0 flex-shrink-0 text-sm lg:text-base xl:text-lg font-bold text-left ${location.pathname === '/' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>
 							관리프로그램
 						</p>
 					</Link>
 					<Link to="/member-app" className={`flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 py-3 border-t-0 border-r-0 border-b-2 border-l-0 ${location.pathname === '/member-app' ? 'border-[#4ab3bc]' : 'border-transparent'}`}>
 						<p className="flex-grow-0 flex-shrink-0 text-lg text-left">
-							<span className={`flex-grow-0 flex-shrink-0 text-lg font-bold text-left ${location.pathname === '/member-app' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>회원</span>
-							<span className={`flex-grow-0 flex-shrink-0 text-lg text-left ${location.pathname === '/member-app' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}> ∙ </span>
-							<span className={`flex-grow-0 flex-shrink-0 text-lg font-bold text-left ${location.pathname === '/member-app' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>강사앱</span>
+							<span className={`flex-grow-0 flex-shrink-0 text-sm lg:text-base xl:text-lg font-bold text-left ${location.pathname === '/member-app' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>회원</span>
+							<span className={`flex-grow-0 flex-shrink-0 text-sm lg:text-base xl:text-lg text-left ${location.pathname === '/member-app' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}> ∙ </span>
+							<span className={`flex-grow-0 flex-shrink-0 text-sm lg:text-base xl:text-lg font-bold text-left ${location.pathname === '/member-app' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>강사앱</span>
 						</p>
 					</Link>
 					<Link to="/event" className={`flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 py-3 border-t-0 border-r-0 border-b-2 border-l-0 ${location.pathname === '/event' ? 'border-[#4ab3bc]' : 'border-transparent'}`}>
-						<p className={`flex-grow-0 flex-shrink-0 text-lg font-bold text-left ${location.pathname === '/event' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>이벤트</p>
+						<p className={`flex-grow-0 flex-shrink-0 text-sm lg:text-base xl:text-lg font-bold text-left ${location.pathname === '/event' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>이벤트</p>
 					</Link>
 					<Link to="/notice" className={`flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 py-3 border-t-0 border-r-0 border-b-2 border-l-0 ${location.pathname === '/notice' ? 'border-[#4ab3bc]' : 'border-transparent'}`}>
-						<p className={`flex-grow-0 flex-shrink-0 text-lg font-bold text-left ${location.pathname === '/notice' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>공지사항</p>
+						<p className={`flex-grow-0 flex-shrink-0 text-sm lg:text-base xl:text-lg font-bold text-left ${location.pathname === '/notice' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>공지사항</p>
 					</Link>
 					<Link to="/about" className={`flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2.5 py-3 border-t-0 border-r-0 border-b-2 border-l-0 ${location.pathname === '/about' ? 'border-[#4ab3bc]' : 'border-transparent'}`}>
-						<p className={`flex-grow-0 flex-shrink-0 text-lg font-bold text-left ${location.pathname === '/about' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>회사소개</p>
+						<p className={`flex-grow-0 flex-shrink-0 text-sm lg:text-base xl:text-lg font-bold text-left ${location.pathname === '/about' ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>회사소개</p>
 					</Link>
 				</div>
 			</div>

@@ -30,13 +30,15 @@ const IntegratedPlatformSection = () => {
 			
 			<div className="flex flex-col justify-start items-start w-[1920px] absolute left-0 top-60 gap-16 px-48">
 				<div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 w-[1536px] gap-2 border-t-0 border-r-0 border-b-0 border-l-4 border-[#e6e6e6]">
-					<div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 px-8">
+					<div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 px-8"
+					style={{fontFamily: 'esamanru, sans-serif'}}>
 						<p className="flex-grow-0 flex-shrink-0 text-6xl font-medium text-left">
 							<span className="flex-grow-0 flex-shrink-0 text-6xl font-medium text-left text-[#4d4d4d]">모든 종목을 통합한 </span>
 							<span className="flex-grow-0 flex-shrink-0 text-6xl font-medium text-left text-[#4ab3bc]">만능 플랫폼</span>
 						</p>
 					</div>
-					<div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 px-8">
+					<div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 px-8"
+					     style={{fontFamily: 'esamanru, sans-serif'}}>
 						<p className="flex-grow-0 flex-shrink-0 text-[32px] font-light text-left text-[#4d4d4d]">
 							다종목 통합 관리, 하나로 해결하는 올인원 운동 플랫폼
 						</p>
@@ -98,7 +100,8 @@ const IntegratedPlatformSection = () => {
 							</div>
 						</div>
 						
-						<div className="flex justify-center items-center absolute left-0 top-0 gap-2.5 px-8 py-4 rounded-tl-2xl rounded-br-2xl bg-[#d1f8fa]">
+						<div className="flex justify-center items-center absolute left-0 top-0 gap-2.5 px-8 py-4 rounded-tl-2xl rounded-br-2xl bg-[#d1f8fa]"
+						     style={{fontFamily: 'esamanru, sans-serif'}}>
 							<p className="flex-grow-0 flex-shrink-0 text-5xl font-medium text-left text-[#4ab3bc]">
 								바디스위치
 							</p>

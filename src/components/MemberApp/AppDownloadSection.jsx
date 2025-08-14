@@ -20,7 +20,8 @@ const AppDownloadSection = () => {
 	return (
 		<div className="flex flex-col justify-center items-center w-full gap-20 px-48 min-h-screen">
 			<div className="flex flex-col justify-start items-center relative gap-8">
-				<p className="text-7xl text-center text-[#333]">
+				<p className="text-7xl text-center text-[#333]"
+				   style={{fontFamily: 'Inklipquid, sans-serif'}}>
 					더 쉬운 관리, 더 큰 성공
 				</p>
 				<div className="flex justify-center items-center relative gap-6">

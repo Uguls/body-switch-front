@@ -28,7 +28,8 @@ const AdminAppCtaSection = () => {
 		// 1. 가장 바깥쪽 div에서 좌우 여백(px-4 md:px-48)을 제거합니다.
 		<div className="flex flex-col justify-start w-full gap-16 py-20">
 			{/* 2. 제목 섹션 div에 좌우 여백을 직접 추가합니다. */}
-			<div className="w-full px-4 md:px-48">
+			<div className="w-full px-4 md:px-48"
+			     style={{fontFamily: 'esamanru, sans-serif'}}>
 				<div className="flex flex-col justify-start items-start w-full gap-3 border-l-4 border-[#e6e6e6]">
 					<div className="self-stretch px-8">
 						<p className="text-4xl md:text-6xl font-medium text-left">

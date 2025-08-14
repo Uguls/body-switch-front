@@ -5,11 +5,13 @@ import Footer from "./components/Footer.jsx";
 import QuickMenu from "./components/QuickMenu.jsx";
 import ProgramManagementPage from "./pages/ProgramManagementPage.jsx";
 import MemberAppPage from "./pages/MemberAppPage.jsx";
-import EventPage from "./pages/EventPage.jsx";
-import NoticePage from "./pages/NoticePage.jsx";
+import EventListPage from "./pages/EventListPage.jsx";
+import NoticePage from "./pages/NoticeListPage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import IntroductionPage from "./pages/IntroductionPage.jsx";
 import InquiryPage from "./pages/InquiryPage.jsx";
+import NoticeDetailPage from "./pages/NoticeDetailPage.jsx";
+import EventDetailPage from "./pages/EventDetailPage.jsx";
 
 // 내부 컴포넌트로 라우터 로직 분리
 const AppContent = () => {
@@ -42,8 +44,10 @@ const AppContent = () => {
 				<Routes>
 					<Route path="/" element={<ProgramManagementPage pricingSectionRef={pricingSectionRef} />} />
 					<Route path="/member-app" element={<MemberAppPage />} />
-					<Route path="/event" element={<EventPage />} />
+					<Route path="/event" element={<EventListPage />} />
+					<Route path="/event/:id" element={<EventDetailPage />} />
 					<Route path="/notice" element={<NoticePage />} />
+					<Route path="/notice/:id" element={<NoticeDetailPage />} />
 					<Route path="/about" element={<AboutPage />} />
 					<Route path="/introduction" element={<IntroductionPage />} />
 					<Route path="/inquiry" element={<InquiryPage />} />

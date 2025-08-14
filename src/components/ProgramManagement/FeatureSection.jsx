@@ -9,7 +9,8 @@ const FeatureSection = () => {
 			{/* 전체 컨텐츠 컨테이너 */}
 			<div className="flex flex-col justify-start items-center w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-48 gap-16">
 				{/* 상단 텍스트 섹션 */}
-				<div className="flex flex-col justify-start items-start w-full gap-2 border-l-4 border-[#e6e6e6]">
+				<div className="flex flex-col justify-start items-start w-full gap-2 border-l-4 border-[#e6e6e6]"
+				     style={{fontFamily: 'esamanru, sans-serif'}}>
 					<div className="self-stretch px-8">
 						<p className="text-4xl md:text-6xl font-medium text-left">
 							<span className="text-[#4ab3bc]">바디스위치</span>

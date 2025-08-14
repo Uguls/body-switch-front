@@ -4,7 +4,8 @@ function ChatSection() {
 	return (
 		<div className="flex flex-col justify-start items-center w-full gap-16 pb-60 bg-white">
 			{/* 상단 헤더 */}
-			<div className="flex flex-col justify-start items-start w-full max-w-[1536px] gap-2 border-l-4 border-[#e6e6e6]">
+			<div className="flex flex-col justify-start items-start w-full max-w-[1536px] gap-2 border-l-4 border-[#e6e6e6]"
+			     style={{fontFamily: 'esamanru, sans-serif'}}>
 				<div className="flex justify-start items-start self-stretch relative gap-2.5 px-8">
 					<p className="flex-grow-0 flex-shrink-0 text-6xl font-medium text-left text-[#4ab3bc]">
 						실시간 소통으로 강사와 빠른 피드백
