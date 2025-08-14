@@ -94,7 +94,7 @@ const NoticeListPage = () => {
 
 	if (loading) {
 		return (
-			<div className="flex justify-center items-center h-screen text-2xl font-semibold">
+			<div className="pt-24 flex justify-center items-center h-screen text-2xl font-semibold">
 				로딩 중...
 			</div>
 		);
@@ -102,8 +102,40 @@ const NoticeListPage = () => {
 
 	if (error) {
 		return (
-			<div className="flex justify-center items-center h-screen text-2xl font-semibold text-red-500">
+			<div className="pt-24 flex justify-center items-center h-screen text-2xl font-semibold text-red-500">
 				{error}
+			</div>
+		);
+	}
+
+	if (!notices || notices.length === 0) {
+		return (
+			<div className="pt-24 flex flex-col items-center w-full">
+				<div className="flex flex-col items-center max-w-[1536px] mx-auto">
+					{/* ... (제목 섹션, 검색 섹션, 헤더는 그대로 유지) */}
+					<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
+						<p className="text-[40px] font-medium text-[#333]">공지사항</p>
+					</div>
+					<div className="flex justify-center items-center w-full gap-2 py-4 bg-[#f2f2f2]">
+						<div className="flex justify-center items-center w-[480px] h-12 px-4 py-3 rounded-lg bg-white border border-[#d9d9d9]">
+							<p className="w-[448px] h-[21px] text-base font-medium text-[#a6a6a6]">검색어를 입력해 주세요</p>
+						</div>
+						<div className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc]">
+							<p className="text-xl font-medium text-white">검색</p>
+						</div>
+					</div>
+					<div className="flex flex-col justify-start items-start w-full">
+						<div className="flex justify-start items-center w-full border border-[#b3b3b3]">
+							<div className="flex justify-center items-center w-40 h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">번호</p></div>
+							<div className="flex justify-center items-center w-[560px] h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">제목</p></div>
+							<div className="flex justify-center items-center w-80 h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">내용</p></div>
+							<div className="flex justify-center items-center w-[120px] h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">작성자</p></div>
+							<div className="flex justify-center items-center flex-grow h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">작성일</p></div>
+							<div className="flex justify-center items-center w-[120px] h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">조회수</p></div>
+						</div>
+						<div className="py-16 text-center text-lg text-gray-500 w-full">공지사항이 없습니다.</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
@@ -172,10 +204,10 @@ const NoticeListPage = () => {
 										{notice.title}
 									</p>
 								</div>
-								{/* 내용: truncate 클래스 적용 */}
+								{/* 💡 내용: HTML 태그를 제거하고 첫 줄만 표시 */}
 								<div className="flex justify-start items-center w-80 px-4 py-3">
 									<p className="w-full text-base font-medium text-neutral-800 truncate">
-										{notice.content}
+										{notice.content.replace(/<[^>]*>/g, '')}
 									</p>
 								</div>
 								<div className="flex justify-center items-center w-[120px] py-3">
@@ -190,7 +222,7 @@ const NoticeListPage = () => {
 							</Link>
 						))
 					) : (
-						<div className="py-16 text-center text-lg text-gray-500">
+						<div className="py-16 text-center text-lg text-gray-500 w-full">
 							공지사항이 없습니다.
 						</div>
 					)}

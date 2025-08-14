@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import QuickMenu from "./components/QuickMenu.jsx";
+import KakaoTalkModal from "./components/KakaoTalkModal.jsx"; // ⬅️ 모달 컴포넌트 import
 import ProgramManagementPage from "./pages/ProgramManagementPage.jsx";
 import MemberAppPage from "./pages/MemberAppPage.jsx";
 import EventListPage from "./pages/EventListPage.jsx";
@@ -17,17 +18,20 @@ import EventDetailPage from "./pages/EventDetailPage.jsx";
 const AppContent = () => {
 	const pricingSectionRef = useRef(null);
 	const location = useLocation();
+	const [isModalOpen, setIsModalOpen] = useState(false); // ⬅️ 모달 상태 추가
+
+	const openModal = () => setIsModalOpen(true); // ⬅️ 모달 열기 함수
+	const closeModal = () => setIsModalOpen(false); // ⬅️ 모달 닫기 함수
 
 	const scrollToPricingSection = () => {
 		if (pricingSectionRef.current) {
-			pricingSectionRef.current.scrollIntoView({ 
+			pricingSectionRef.current.scrollIntoView({
 				behavior: 'smooth',
 				block: 'start'
 			});
 		}
 	};
 
-	// URL 해시를 확인하여 가격 섹션으로 스크롤
 	useEffect(() => {
 		if (location.hash === '#pricing' && location.pathname === '/') {
 			setTimeout(() => {
@@ -38,9 +42,9 @@ const AppContent = () => {
 
 	return (
 		<div className="min-h-screen bg-white">
-			<Header/>
+			<Header />
 			<div>
-				<QuickMenu onPriceClick={scrollToPricingSection} />
+				<QuickMenu onPriceClick={scrollToPricingSection} onKakaoClick={openModal} /> {/* ⬅️ onKakaoClick props 전달 */}
 				<Routes>
 					<Route path="/" element={<ProgramManagementPage pricingSectionRef={pricingSectionRef} />} />
 					<Route path="/member-app" element={<MemberAppPage />} />
@@ -54,6 +58,8 @@ const AppContent = () => {
 				</Routes>
 			</div>
 			<Footer />
+
+			<KakaoTalkModal isOpen={isModalOpen} onClose={closeModal} /> {/* ⬅️ 모달 컴포넌트 렌더링 */}
 		</div>
 	);
 };
@@ -66,4 +72,4 @@ function App() {
 	);
 }
 
-export default App
+export default App;

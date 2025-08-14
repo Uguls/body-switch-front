@@ -12,9 +12,9 @@ import sportIconBottom4 from '../../assets/ProgramManagement/sport_icon_bottom_4
 
 const IntegratedPlatformSection = () => {
 	return (
-		<div className="w-[1920px] h-[1208px] relative">
+		<div className="w-[full] h-[1208px] relative">
 			<svg
-				width="1920"
+				width="100%"
 				height="672"
 				viewBox="0 0 1920 672"
 				fill="none"

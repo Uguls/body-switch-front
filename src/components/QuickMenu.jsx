@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import MenuItem from './MenuItem';
+import KakaoTalkModal from './KakaoTalkModal'; // ⬅️ 모달 컴포넌트 import
 
 // 1. 아이콘 이미지들을 모두 import 합니다.
 import inquireDefault from '../assets/icons/inquire-default.png';
@@ -53,32 +54,29 @@ const ArrowDown = () => (
 	</div>
 );
 
-const QuickMenu = ({ onPriceClick }) => {
+const QuickMenu = ({ onPriceClick, onKakaoClick }) => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	// 1. 메뉴가 열렸는지(true) 닫혔는지(false)를 기억하는 상태를 만듭니다.
 	const [isExpanded, setIsExpanded] = useState(true);
 
-	// 2. 화살표를 클릭할 때마다 isExpanded 상태를 반전시키는 함수입니다.
 	const toggleMenu = () => {
 		setIsExpanded(!isExpanded);
 	};
-
 	const handlePriceClick = () => {
 		if (location.pathname === '/') {
-			// 메인 페이지에서는 스크롤
 			if (onPriceClick) {
 				onPriceClick();
 			}
 		} else {
-			// 다른 페이지에서는 메인 페이지의 가격 섹션으로 이동
 			navigate('/#pricing');
 		}
 	};
 
+	// 💡 카카오톡 버튼 클릭 시 props로 전달받은 함수 호출
 	const handleKakaoClick = () => {
-		// TODO: 카카오톡 문의 기능 구현 예정
-		alert('카카오톡 문의 기능은 공사 중입니다.');
+		if (onKakaoClick) {
+			onKakaoClick();
+		}
 	};
 
 	const menuItems = [
@@ -91,9 +89,7 @@ const QuickMenu = ({ onPriceClick }) => {
 
 	return (
 		<div className="fixed top-1/2 right-2 sm:right-4 lg:right-6 -translate-y-1/2 z-50 flex flex-col items-center p-1 sm:p-2 rounded-xl bg-white/90 backdrop-blur-sm shadow-2xl scale-75 sm:scale-90 lg:scale-100">
-			{/* 3. isExpanded 상태에 따라 다른 내용을 보여줍니다. */}
 			{isExpanded ? (
-				// 메뉴가 열렸을 때 (Expanded View)
 				<>
 					<Logo />
 					<div className="flex flex-col items-center">
@@ -114,7 +110,6 @@ const QuickMenu = ({ onPriceClick }) => {
 					</div>
 				</>
 			) : (
-				// 메뉴가 닫혔을 때 (Collapsed View)
 				<>
 					<Logo />
 					<p className="w-[50px] sm:w-[59px] text-base sm:text-[19px] font-semibold text-center text-[#108389]">

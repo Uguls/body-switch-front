@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // useParams와 useNavigate 훅 import
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const NoticeDetailPage = () => {
-	const { id } = useParams(); // ⬅️ URL에서 id 파라미터를 가져옴
-	const navigate = useNavigate(); // ⬅️ 페이지 이동을 위한 훅
+	const { id } = useParams();
+	const navigate = useNavigate();
 	const [notice, setNotice] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ const NoticeDetailPage = () => {
 		const fetchNoticeDetail = async () => {
 			try {
 				const response = await axios.get(`http://localhost:8080/notice/${id}`);
-				setNotice(response.data); // API 응답 데이터를 notice 상태에 저장
+				setNotice(response.data);
 			} catch (err) {
 				setError("공지사항 상세 정보를 불러오는 데 실패했습니다.");
 				console.error("Error fetching notice detail:", err);
@@ -23,10 +23,10 @@ const NoticeDetailPage = () => {
 		};
 
 		fetchNoticeDetail();
-	}, [id]); // id가 변경될 때마다 다시 API 호출
+	}, [id]);
 
 	const handleGoBack = () => {
-		navigate("/notice"); // 공지 목록 페이지로 이동
+		navigate("/notice");
 	};
 
 	if (loading) {
@@ -77,13 +77,14 @@ const NoticeDetailPage = () => {
 					</p>
 				</div>
 
-				{/* 상세 내용 본문: 배경 제거 및 텍스트 중앙 정렬 */}
+				{/* 상세 내용 본문 */}
 				<div className="mt-8 mb-16">
-					<p className="max-w-[1200px] text-base font-medium text-center text-neutral-700 whitespace-pre-wrap"
-					   style={{fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger"}}
-					>
-						{notice.content}
-					</p>
+					{/* 💡 dangerouslySetInnerHTML을 사용하여 HTML 렌더링 */}
+					<div
+						className="max-w-[1200px] text-base font-medium text-center text-neutral-700 whitespace-pre-wrap"
+						style={{fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger"}}
+						dangerouslySetInnerHTML={{ __html: notice.content }}
+					/>
 					{notice.imgUrls && notice.imgUrls.length > 0 && (
 						<div className="flex flex-col gap-4 mt-8">
 							{notice.imgUrls.map((url, index) => (

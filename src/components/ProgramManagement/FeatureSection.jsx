@@ -4,10 +4,10 @@ import faceImg from '../../assets/ProgramManagement/face_img.png';
 
 const FeatureSection = () => {
 	return (
-		// 1. 여기서 'overflow-hidden'을 제거하고, SVG가 보일 공간을 확보하기 위해 아래쪽 패딩(pb-40)을 추가합니다.
+		// 1. 'overflow-hidden'을 제거하고, SVG가 보일 공간을 확보하기 위해 아래쪽 패딩(pb-40)을 추가합니다.
 		<div className="w-full relative bg-white pt-20 pb-40">
 			{/* 전체 컨텐츠 컨테이너 */}
-			<div className="flex flex-col justify-start items-center w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-48 gap-16">
+			<div className="flex flex-col justify-start items-center w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-48 gap-16 z-10"> {/* ⬅️ z-10 추가 */}
 				{/* 상단 텍스트 섹션 */}
 				<div className="flex flex-col justify-start items-start w-full gap-2 border-l-4 border-[#e6e6e6]"
 				     style={{fontFamily: 'esamanru, sans-serif'}}>
@@ -65,13 +65,12 @@ const FeatureSection = () => {
 			</div>
 
 			{/* 하단 배경 곡선 SVG */}
-			{/* 2. 불필요한 inline style을 제거하고 className으로만 위치를 제어합니다. */}
 			<svg
 				width="100%"
 				viewBox="0 0 1920 579"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				className="absolute bottom-0 left-0 right-0 -z-10"
+				className="absolute -bottom-35 left-0 right-0 z-0" // ⬅️ z-0으로 변경
 				preserveAspectRatio="none"
 			>
 				<path

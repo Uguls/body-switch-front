@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom"; // Link 컴포넌트 추가
 import axios from "axios";
+
+// HTML을 안전하게 렌더링하는 함수
+const renderHTML = (htmlString) => {
+	return { __html: htmlString };
+};
 
 const EventDetailPage = () => {
 	const { id } = useParams();
@@ -57,28 +62,23 @@ const EventDetailPage = () => {
 			<div className="flex flex-col items-center max-w-[1536px] mx-auto">
 				{/* 제목 섹션 */}
 				<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
-					<p className="text-[40px] font-medium text-[#333]">
-						이벤트
-					</p>
+					<p className="text-[40px] font-medium text-[#333]">이벤트</p>
 				</div>
 
 				{/* 상세 정보 헤더 */}
 				<div className="flex flex-col justify-start items-center w-[628px] relative gap-[9px] mt-16">
 					<div className="flex justify-start items-center relative gap-4">
-						<p className="flex-grow-0 flex-shrink-0 text-2xl font-semibold text-left text-[#4ab3bc]">
+						<p className="text-2xl font-semibold text-left text-[#4ab3bc]">
 							진행중 이벤트
 						</p>
-						<div className="flex-grow-0 flex-shrink-0 w-0.5 h-5 rounded-[999px] bg-[#e6e6e6]"></div>
-						<p className="flex-grow-0 flex-shrink-0 text-2xl font-medium text-left text-[#b3b3b3]">
+						<div className="w-0.5 h-5 rounded-[999px] bg-[#e6e6e6]"></div>
+						<p className="text-2xl font-medium text-left text-[#b3b3b3]">
 							{event.createdAt}
 						</p>
 					</div>
-					<p className="self-stretch flex-grow-0 flex-shrink-0 w-[628px] text-[40px] font-semibold text-center text-[#333]">
+					<p className="self-stretch w-[628px] text-[40px] font-semibold text-center text-[#333]">
 						{event.title}
 					</p>
-					{/*<p className="self-stretch flex-grow-0 flex-shrink-0 w-[628px] text-[32px] font-medium text-center text-[#666]">*/}
-					{/*	"{event.subTitle}"*/}
-					{/*</p>*/}
 				</div>
 
 				{/* 이벤트 이미지 및 상세 내용 */}
@@ -86,16 +86,47 @@ const EventDetailPage = () => {
 					<div
 						className="flex justify-center items-center w-full h-[600px] bg-cover bg-no-repeat bg-center"
 						style={{ backgroundImage: `url(${event.imgUrl})` }}
-					>
-					</div>
+					></div>
 					<div className="max-w-[1200px] w-full px-4 text-center">
-						<p className="text-base font-medium text-neutral-700 whitespace-pre-wrap"
-						   style={{fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger"}}
-						>
-							{event.content}
-						</p>
+						<div
+							className="text-base font-medium text-neutral-700 whitespace-pre-wrap"
+							style={{ fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger" }}
+							dangerouslySetInnerHTML={renderHTML(event.content)}
+						/>
 					</div>
 				</div>
+
+				{/* previousEvent가 있을 경우 다음 글 섹션 렌더링 */}
+				{event.previousEvent && (
+					<div className="flex flex-col justify-start items-start w-[1200px] relative gap-4 mt-20">
+						<p className="text-2xl font-medium text-center text-[#b3b3b3]">다음글</p>
+						<Link
+							to={`/event/${event.previousEvent.id}`}
+							className="flex justify-start items-center w-full h-64 relative rounded-2xl bg-white shadow-[0px_0px_12px_0_rgba(0,0,0,0.16)] overflow-hidden transition-all duration-500 transform hover:scale-[1.01]"
+						>
+							<div className="flex-grow-0 flex-shrink-0 w-[30%] h-64 relative overflow-hidden rounded-l-2xl transition-all duration-800 hover:w-[35%]">
+								<div
+									className="w-full h-full bg-cover bg-no-repeat bg-center"
+									style={{ backgroundImage: `url(${event.previousEvent.imgUrl})` }}
+								></div>
+							</div>
+							<div className="flex flex-col justify-between items-start flex-grow p-6 transition-all duration-500 hover:flex-shrink">
+								<div className="flex flex-col justify-start items-start self-stretch gap-6">
+									<p className="text-[32px] font-semibold text-left text-[#333]">
+										{event.previousEvent.title}
+									</p>
+									{/* 💡 truncate 클래스를 사용하여 내용의 맨 윗줄만 표시 */}
+									<p className="w-full text-base font-medium text-left text-neutral-800 truncate">
+										{event.previousEvent.content.replace(/<[^>]*>/g, '')}
+									</p>
+								</div>
+								<p className="text-xl font-medium text-left text-[#b3b3b3]">
+									{event.previousEvent.createdAt}
+								</p>
+							</div>
+						</Link>
+					</div>
+				)}
 
 				{/* 목록으로 돌아가기 버튼 */}
 				<div className="flex justify-center w-full mt-16">
