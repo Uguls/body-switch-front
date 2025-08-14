@@ -124,7 +124,8 @@ const EventListPage = () => {
 			<div className="flex flex-col items-center max-w-[1536px] mx-auto">
 				{/* 제목 섹션 */}
 				<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
-					<p className="flex-grow-0 flex-shrink-0 text-[40px] font-medium text-left text-[#333]">
+					<p className="flex-grow-0 flex-shrink-0 text-[40px] font-medium text-left text-[#333]"
+					   style={{fontFamily: 'esamanru, sans-serif'}}>
 						이벤트
 					</p>
 				</div>

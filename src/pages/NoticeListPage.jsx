@@ -8,11 +8,22 @@ const NoticeListPage = () => {
 	const [error, setError] = useState(null);
 	const [currentPage, setCurrentPage] = useState(0);
 	const [totalPages, setTotalPages] = useState(0);
+	const [searchKeyword, setSearchKeyword] = useState("");
+	const [currentSearchKeyword, setCurrentSearchKeyword] = useState("");
+	const [isSearching, setIsSearching] = useState(false);
 
 	useEffect(() => {
 		const fetchNotices = async () => {
 			try {
-				const response = await axios.get(`http://localhost:8080/notice?page=${currentPage}`);
+				let response;
+				if (isSearching && currentSearchKeyword.trim()) {
+					// 검색 API 호출 - 미리 구성된 URL로 전달
+					const searchUrl = `http://localhost:8080/notice/search/${currentSearchKeyword.trim()}?page=${currentPage}`;
+					response = await axios.get(searchUrl);
+				} else {
+					// 전체 목록 API 호출
+					response = await axios.get(`http://localhost:8080/notice?page=${currentPage}`);
+				}
 				setNotices(response.data.notices);
 				setCurrentPage(response.data.currentPage);
 				setTotalPages(response.data.totalPages);
@@ -24,12 +35,45 @@ const NoticeListPage = () => {
 			}
 		};
 		fetchNotices();
-	}, [currentPage]);
+	}, [currentPage, isSearching, currentSearchKeyword]);
 
 	const handlePageChange = (page) => {
 		if (page >= 0 && page < totalPages) {
 			setCurrentPage(page);
 		}
+	};
+
+	// 검색 처리 함수
+	const handleSearch = () => {
+		if (searchKeyword.trim()) {
+			setCurrentSearchKeyword(searchKeyword.trim());
+			setIsSearching(true);
+			setCurrentPage(0); // 검색 시 첫 페이지로 이동
+		} else {
+			setCurrentSearchKeyword("");
+			setIsSearching(false);
+			setCurrentPage(0);
+		}
+	};
+
+	// 검색어 입력 핸들러
+	const handleSearchInputChange = (e) => {
+		setSearchKeyword(e.target.value);
+	};
+
+	// Enter 키 처리
+	const handleSearchKeyPress = (e) => {
+		if (e.key === 'Enter') {
+			handleSearch();
+		}
+	};
+
+	// 검색 초기화
+	const handleSearchReset = () => {
+		setSearchKeyword("");
+		setCurrentSearchKeyword("");
+		setIsSearching(false);
+		setCurrentPage(0);
 	};
 
 	const renderPagination = () => {
@@ -112,18 +156,41 @@ const NoticeListPage = () => {
 		return (
 			<div className="pt-24 flex flex-col items-center w-full">
 				<div className="flex flex-col items-center max-w-[1536px] mx-auto">
-					{/* ... (제목 섹션, 검색 섹션, 헤더는 그대로 유지) */}
+					{/* 제목 섹션 */}
 					<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
-						<p className="text-[40px] font-medium text-[#333]">공지사항</p>
+						<p className="text-[40px] font-medium text-[#333]"
+						   style={{fontFamily: 'esamanru, sans-serif'}}>
+							공지사항
+						</p>
 					</div>
-					<div className="flex justify-center items-center w-full gap-2 py-4 bg-[#f2f2f2]">
+					<div className="flex justify-center items-center w-full gap-2 py-4 bg-[#f2f2f2] border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
 						<div className="flex justify-center items-center w-[480px] h-12 px-4 py-3 rounded-lg bg-white border border-[#d9d9d9]">
-							<p className="w-[448px] h-[21px] text-base font-medium text-[#a6a6a6]">검색어를 입력해 주세요</p>
+							<input
+								type="text"
+								value={searchKeyword}
+								onChange={handleSearchInputChange}
+								onKeyPress={handleSearchKeyPress}
+								placeholder="검색어를 입력해 주세요"
+								className="w-full h-full text-base font-medium outline-none bg-transparent text-[#333] placeholder-[#a6a6a6]"
+							/>
 						</div>
-						<div className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc]">
+						<div
+							onClick={handleSearch}
+							className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
+						>
 							<p className="text-xl font-medium text-white">검색</p>
 						</div>
+						{isSearching && (
+							<div
+								onClick={handleSearchReset}
+								className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
+							>
+								<p className="text-xl font-medium text-white">전체보기</p>
+							</div>
+						)}
 					</div>
+
+
 					<div className="flex flex-col justify-start items-start w-full">
 						<div className="flex justify-start items-center w-full border border-[#b3b3b3]">
 							<div className="flex justify-center items-center w-40 h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">번호</p></div>
@@ -133,7 +200,9 @@ const NoticeListPage = () => {
 							<div className="flex justify-center items-center flex-grow h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">작성일</p></div>
 							<div className="flex justify-center items-center w-[120px] h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">조회수</p></div>
 						</div>
-						<div className="py-16 text-center text-lg text-gray-500 w-full">공지사항이 없습니다.</div>
+						<div className="py-16 text-center text-lg text-gray-500 w-full">
+							{isSearching ? `"${currentSearchKeyword}" 검색 결과가 없습니다.` : '공지사항이 없습니다.'}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -145,24 +214,40 @@ const NoticeListPage = () => {
 			<div className="flex flex-col items-center max-w-[1536px] mx-auto">
 				{/* 제목 섹션 */}
 				<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
-					<p className="text-[40px] font-medium text-[#333]">
+					<p className="text-[40px] font-medium text-[#333]"
+					   style={{fontFamily: 'esamanru, sans-serif'}}>
 						공지사항
 					</p>
 				</div>
 
 				{/* 검색 섹션 */}
-				<div className="flex justify-center items-center w-full gap-2 py-4 bg-[#f2f2f2]">
+				<div className="flex justify-center items-center w-full gap-2 py-4 bg-[#f2f2f2] border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
 					<div className="flex justify-center items-center w-[480px] h-12 px-4 py-3 rounded-lg bg-white border border-[#d9d9d9]">
-						<p className="w-[448px] h-[21px] text-base font-medium text-[#a6a6a6]">
-							검색어를 입력해 주세요
-						</p>
+						<input
+							type="text"
+							value={searchKeyword}
+							onChange={handleSearchInputChange}
+							onKeyPress={handleSearchKeyPress}
+							placeholder="검색어를 입력해 주세요"
+							className="w-full h-full text-base font-medium outline-none bg-transparent text-[#333] placeholder-[#a6a6a6]"
+						/>
 					</div>
-					<div className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc]">
-						<p className="text-xl font-medium text-white">
-							검색
-						</p>
+					<div
+						onClick={handleSearch}
+						className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
+					>
+						<p className="text-xl font-medium text-white">검색</p>
 					</div>
+					{isSearching && (
+						<div
+							onClick={handleSearchReset}
+							className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
+						>
+							<p className="text-xl font-medium text-white">전체보기</p>
+						</div>
+					)}
 				</div>
+
 
 				{/* 공지사항 목록 헤더 */}
 				<div className="flex flex-col justify-start items-start w-full">
@@ -223,15 +308,17 @@ const NoticeListPage = () => {
 						))
 					) : (
 						<div className="py-16 text-center text-lg text-gray-500 w-full">
-							공지사항이 없습니다.
+							{isSearching ? `"${currentSearchKeyword}" 검색 결과가 없습니다.` : '공지사항이 없습니다.'}
 						</div>
 					)}
 				</div>
 
-				{/* 페이지네이션 섹션 */}
-				<div className="flex justify-start items-center relative gap-4 mt-8">
-					{renderPagination()}
-				</div>
+				{/* 페이지네이션 섹션 - 실제로 페이징이 필요할 때만 표시 */}
+				{totalPages > 1 && notices && notices.length > 0 && (
+					<div className="flex justify-start items-center relative gap-4 mt-8">
+						{renderPagination()}
+					</div>
+				)}
 			</div>
 		</div>
 	);

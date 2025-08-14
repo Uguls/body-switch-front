@@ -64,7 +64,8 @@ const NoticeDetailPage = () => {
 				{/* 상세 정보 헤더 */}
 				<div className="flex flex-col justify-start items-center w-[628px] relative gap-[9px] mt-16">
 					<div className="flex justify-start items-center relative gap-4">
-						<p className="flex-grow-0 flex-shrink-0 text-2xl font-semibold text-left text-[#4ab3bc]">
+						<p className="flex-grow-0 flex-shrink-0 text-2xl font-semibold text-left text-[#4ab3bc]"
+						   style={{fontFamily: 'esamanru, sans-serif'}}>
 							공지사항
 						</p>
 						<div className="flex-grow-0 flex-shrink-0 w-0.5 h-5 rounded-[999px] bg-[#e6e6e6]"></div>

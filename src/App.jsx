@@ -1,16 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
-import QuickMenu from "./components/QuickMenu.jsx";
-import KakaoTalkModal from "./components/KakaoTalkModal.jsx"; // ⬅️ 모달 컴포넌트 import
-import ProgramManagementPage from "./pages/ProgramManagementPage.jsx";
-import MemberAppPage from "./pages/MemberAppPage.jsx";
+import { AppHeader, AppFooter, QuickMenuWidget } from "./components/layout/index.jsx";
+import { KakaoConsultModal, ScrollToTopButton } from "./components/ui/index.jsx"; // ⬅️ 모달 컴포넌트 import
+import ManagementProgramPage from "./pages/ManagementProgramPage.jsx";
+import MemberAppInfoPage from "./pages/MemberAppInfoPage.jsx";
 import EventListPage from "./pages/EventListPage.jsx";
 import NoticePage from "./pages/NoticeListPage.jsx";
-import AboutPage from "./pages/AboutPage.jsx";
-import IntroductionPage from "./pages/IntroductionPage.jsx";
-import InquiryPage from "./pages/InquiryPage.jsx";
+import CompanyAboutPage from "./pages/CompanyAboutPage.jsx";
+import ServiceIntroPage from "./pages/ServiceIntroPage.jsx";
+import ContactInquiryPage from "./pages/ContactInquiryPage.jsx";
 import NoticeDetailPage from "./pages/NoticeDetailPage.jsx";
 import EventDetailPage from "./pages/EventDetailPage.jsx";
 
@@ -42,24 +40,25 @@ const AppContent = () => {
 
 	return (
 		<div className="min-h-screen bg-white">
-			<Header />
+			<AppHeader />
 			<div>
-				<QuickMenu onPriceClick={scrollToPricingSection} onKakaoClick={openModal} /> {/* ⬅️ onKakaoClick props 전달 */}
+				<QuickMenuWidget onPriceClick={scrollToPricingSection} onKakaoClick={openModal} /> {/* ⬅️ onKakaoClick props 전달 */}
 				<Routes>
-					<Route path="/" element={<ProgramManagementPage pricingSectionRef={pricingSectionRef} />} />
-					<Route path="/member-app" element={<MemberAppPage />} />
+					<Route path="/" element={<ManagementProgramPage pricingSectionRef={pricingSectionRef} />} />
+					<Route path="/member-app" element={<MemberAppInfoPage />} />
 					<Route path="/event" element={<EventListPage />} />
 					<Route path="/event/:id" element={<EventDetailPage />} />
 					<Route path="/notice" element={<NoticePage />} />
 					<Route path="/notice/:id" element={<NoticeDetailPage />} />
-					<Route path="/about" element={<AboutPage />} />
-					<Route path="/introduction" element={<IntroductionPage />} />
-					<Route path="/inquiry" element={<InquiryPage />} />
+					<Route path="/about" element={<CompanyAboutPage />} />
+					<Route path="/introduction" element={<ServiceIntroPage />} />
+					<Route path="/inquiry" element={<ContactInquiryPage />} />
 				</Routes>
 			</div>
-			<Footer />
+			<AppFooter />
 
-			<KakaoTalkModal isOpen={isModalOpen} onClose={closeModal} /> {/* ⬅️ 모달 컴포넌트 렌더링 */}
+			<KakaoConsultModal isOpen={isModalOpen} onClose={closeModal} /> {/* ⬅️ 모달 컴포넌트 렌더링 */}
+			<ScrollToTopButton /> {/* ⬅️ 맨 위로 가기 버튼 */}
 		</div>
 	);
 };
