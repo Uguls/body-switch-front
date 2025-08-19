@@ -1,0 +1,1 @@
+export { default as KakaoConsultModal } from './KakaoConsultModal.jsx';
