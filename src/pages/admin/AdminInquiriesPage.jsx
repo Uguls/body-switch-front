@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import apiClient from '../../api/apiClient'; // 1. import 구문을 apiClient로 변경
+import { useNavigate } from 'react-router-dom'; // 1. useNavigate 훅을 import 합니다.
+import apiClient from '../../api/apiClient';
 import StatusDropdown from './StatusDropdown';
 
 const STATUS_TO_KOREAN = {
@@ -34,6 +35,9 @@ const AdminInquiriesPage = () => {
 		endDate: '',
 	});
 
+	// 2. navigate 함수를 초기화합니다.
+	const navigate = useNavigate();
+
 	useEffect(() => {
 		const fetchInquiries = async () => {
 			setLoading(true);
@@ -42,13 +46,12 @@ const AdminInquiriesPage = () => {
 				const params = {
 					page: currentPage,
 					size: pageSize,
-					keyword: searchParams.keyword || undefined, // null 대신 undefined를 보내 파라미터에서 제외
+					keyword: searchParams.keyword || undefined,
 					status: searchParams.status || undefined,
 					startDate: searchParams.startDate || undefined,
 					endDate: searchParams.endDate || undefined,
 				};
 
-				// 2. API 호출을 apiClient.get으로 변경
 				const response = await apiClient.get('/inquiries/', { params });
 
 				setInquiries(response.data.events || []);
@@ -105,24 +108,80 @@ const AdminInquiriesPage = () => {
 		);
 
 		try {
-			// 상태 변경 API도 apiClient를 사용해야 토큰이 전송됩니다.
-			// await apiClient.patch(`/inquiries/${inquiryId}/status`, { status: newApiStatus });
-			console.log(`(API Call) Inquiry ID ${inquiryId} status changed to ${newApiStatus}`);
+			await apiClient.patch(`/inquiries/${inquiryId}/change-status`, { status: newApiStatus });
 		} catch (err) {
 			alert('상태 변경에 실패했습니다. 데이터를 새로고침합니다.');
 			setSearchParams(prev => ({...prev}));
 		}
 	};
 
-	const renderPagination = () => {
-		// 페이지네이션 UI 렌더링 로직 (생략)
-		return <div className="text-gray-600">페이지네이션 영역</div>;
+	// 3. 문의글 행 클릭 시 상세 페이지로 이동하는 함수를 추가합니다.
+	const handleRowClick = (inquiryId) => {
+		navigate(`/bodyswitch-admin/inquiries/${inquiryId}`);
 	};
+
+
+	const renderPagination = () => {
+		const pages = [];
+		const maxPageNumbers = 5;
+		const startPage = Math.max(0, currentPage - Math.floor(maxPageNumbers / 2));
+		const endPage = Math.min(totalPages, startPage + maxPageNumbers);
+
+		pages.push(
+			<div
+				key="prev"
+				className={`flex flex-col justify-center items-center h-10 w-10 relative p-2.5 rounded border border-[#d9d9d9] ${
+					currentPage === 0 ? "bg-white cursor-not-allowed" : "bg-white cursor-pointer"
+				}`}
+				onClick={() => handlePageChange(currentPage - 1)}
+			>
+				<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
+				     className={`flex-grow-0 flex-shrink-0 w-[24.48px] h-[24.48px] relative ${
+					     currentPage === 0 ? "fill-[#DEDEDE]" : "fill-[#58B9C1]"
+				     }`}>
+					<path fillRule="evenodd" clipRule="evenodd" d="M8.85645 12.9972L14.7536 18.8943L15.8354 17.8125L11.0201 12.9972L15.8354 8.18332L14.7536 7.09998L8.85645 12.9972Z" fill={currentPage === 0 ? "#DEDEDE" : "#58B9C1"}></path>
+				</svg>
+			</div>
+		);
+
+		for (let i = startPage; i < endPage; i++) {
+			pages.push(
+				<div
+					key={i}
+					className={`flex flex-col justify-center items-center h-10 w-10 relative p-2.5 rounded cursor-pointer ${
+						i === currentPage ? "bg-[#58b9c1] text-white" : "bg-white border border-[#d9d9d9] text-neutral-800"
+					}`}
+					onClick={() => handlePageChange(i)}
+				>
+					<p className="text-base font-medium text-left">{i + 1}</p>
+				</div>
+			);
+		}
+
+		pages.push(
+			<div
+				key="next"
+				className={`flex flex-col justify-center items-center h-10 w-10 relative p-2.5 rounded border border-[#d9d9d9] ${
+					currentPage === totalPages - 1 ? "bg-white cursor-not-allowed" : "bg-white cursor-pointer"
+				}`}
+				onClick={() => handlePageChange(currentPage + 1)}
+			>
+				<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
+				     className={`flex-grow-0 flex-shrink-0 w-[24.48px] h-[24.48px] relative ${
+					     currentPage === totalPages - 1 ? "fill-[#DEDEDE]" : "fill-[#58B9C1]"
+				     }`}>
+					<path fillRule="evenodd" clipRule="evenodd" d="M17.1353 12.9972L11.2381 18.8943L10.1563 17.8125L14.9716 12.9972L10.1563 8.18332L11.2381 7.09998L17.1353 12.9972Z" fill={currentPage === totalPages - 1 ? "#DEDEDE" : "#58B9C1"}></path>
+				</svg>
+			</div>
+		);
+
+		return pages;
+	};
+
 
 	return (
 		<div className="pt-24 flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
 			<div className="w-full max-w-[1536px] mx-auto">
-				{/* ... 이하 UI 코드는 동일 ... */}
 				<div className="flex justify-center items-center w-full relative py-8 border-b-2 border-[#e6e6e6]">
 					<p className="text-3xl md:text-[40px] font-medium text-black">문의내역</p>
 				</div>
@@ -190,14 +249,20 @@ const AdminInquiriesPage = () => {
 							<div className="text-center py-16 text-red-500">{error}</div>
 						) : inquiries.length > 0 ? (
 							inquiries.map(inquiry => (
-								<div key={inquiry.id} className="flex items-center w-full h-[62px] border-b border-x border-[#d9d9d9] text-center text-sm text-black">
+								// 4. 각 행에 onClick 이벤트와 스타일(cursor-pointer, hover)을 추가합니다.
+								<div
+									key={inquiry.id}
+									onClick={() => handleRowClick(inquiry.id)}
+									className="flex items-center w-full h-[62px] border-b border-x border-[#d9d9d9] text-center text-sm text-black cursor-pointer hover:bg-gray-100 transition-colors"
+								>
 									<div className="w-[8%] px-2">{inquiry.id}</div>
 									<div className="w-[12%] px-2">{inquiry.createdAt}</div>
 									<div className="w-[10%] px-2">{inquiry.name}</div>
 									<div className="w-[20%] px-2 truncate">{inquiry.content}</div>
 									<div className="w-[15%] px-2">{inquiry.phoneNumber}</div>
 									<div className="w-[20%] px-2 truncate">{inquiry.email}</div>
-									<div className="w-[15%] px-2 flex justify-center">
+									{/* 5. 상태 변경 드롭다운 클릭 시 페이지 이동이 되지 않도록 이벤트 버블링을 막습니다. */}
+									<div className="w-[15%] px-2 flex justify-center" onClick={(e) => e.stopPropagation()}>
 										<StatusDropdown
 											currentStatus={STATUS_TO_KOREAN[inquiry.status] || '알 수 없음'}
 											onStatusChange={(newKoreanStatus) => handleStatusChange(inquiry.id, newKoreanStatus)}
@@ -212,7 +277,7 @@ const AdminInquiriesPage = () => {
 				</div>
 
 				{totalPages > 1 && (
-					<div className="flex justify-center items-center gap-4 mt-8">
+					<div className="flex justify-center items-center gap-4 mt-8 mb-8">
 						{renderPagination()}
 					</div>
 				)}

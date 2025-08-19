@@ -7,7 +7,7 @@ export const login = async (loginId, password) => {
 	const response = await fetch(`${BASE_URL}/auth/login`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		credentials: 'include', // 쿠키를 포함시키기 위한 필수 옵션
+		// credentials: 'include',
 		body: JSON.stringify({ loginId, password }),
 	});
 

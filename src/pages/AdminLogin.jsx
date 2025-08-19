@@ -108,9 +108,21 @@ const AdminLoginPage = () => {
 							onClick={() => setIsRememberId(!isRememberId)}
 						>
 							<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-								<path d="M17.7778 2.72222V18.2778H2.22222V2.72222H17.7778ZM17.7778 0.5H2.22222C1 0.5 0 1.5 0 2.72222V18.2778C0 19.5 1 20.5 2.22222 20.5H17.7778C19 20.5 20 19.5 20 18.2778V2.72222C20 1.5 19 0.5 17.7778 0.5Z" fill={isRememberId ? '#4ab3bc' : '#CCCCCC'}/>
+								<rect
+									x="1"
+									y="1.5"
+									width="18"
+									height="18"
+									rx="2"
+									fill={isRememberId ? '#4ab3bc' : 'white'}
+									stroke={isRememberId ? '#4ab3bc' : '#CCCCCC'}
+									strokeWidth="2"
+								/>
 								{isRememberId && (
-									<path d="M15.6203 7.55554L8.88889 14.287L5.33333 10.7315L6.44444 9.62036L8.88889 12.0648L14.5093 6.44443L15.6203 7.55554Z" fill={isRememberId ? 'white' : 'transparent'}/>
+									<path
+										d="M15.6203 7.55554L8.88889 14.287L5.33333 10.7315L6.44444 9.62036L8.88889 12.0648L14.5093 6.44443L15.6203 7.55554Z"
+										fill="white"
+									/>
 								)}
 							</svg>
 							<p className="text-xl text-left text-black">아이디 저장</p>
