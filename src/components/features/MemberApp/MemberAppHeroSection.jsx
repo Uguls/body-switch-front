@@ -1,9 +1,9 @@
 import React from 'react';
 
 // 이미지 import
-import instructorAppImage from '../../../assets/memberApp/hero/instructor-app-home.png';
-import memberAppImage from '../../../assets/memberApp/hero/member-app-home.png';
-import appDownload from '../../../assets/memberApp/hero/앱 다운로드.png';
+import instructorAppImage from '../../../assets/app-screenshots/instructor/home-screen.png';
+import memberAppImage from '../../../assets/app-screenshots/member/home-screen.png';
+import appDownload from '../../../assets/app-screenshots/member/download-guide.png';
 
 const MemberAppHeroSection = () => {
 	return (

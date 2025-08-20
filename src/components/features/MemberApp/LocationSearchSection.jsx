@@ -31,7 +31,7 @@ function MapSearchSection() {
 			{/* 지도 및 설명 섹션 */}
 			<div className="w-full relative bg-[#efefef] overflow-hidden">
 				{/* 배경 이미지 */}
-				<img src="/src/assets/memberApp/chat/넓은-지도_흑백-1.png" className="w-full h-full absolute inset-0 object-cover" style={{ filter: 'blur(10px)' }} alt="배경 흑백 지도"/>
+				<img src="/src/assets/app-screenshots/member/map-search-wide.png" className="w-full h-full absolute inset-0 object-cover" style={{ filter: 'blur(10px)' }} alt="배경 흑백 지도"/>
 
 				{/* 배경 장식 SVG */}
 				<svg width="1731" height="890" viewBox="0 0 1731 890" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="xMidYMid slice">
@@ -52,7 +52,7 @@ function MapSearchSection() {
 
 						<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-[55%] w-[75%] max-w-md z-10">
 							<img
-								src="/src/assets/memberApp/chat/지도-목업-사진.png"
+								src="/src/assets/app-screenshots/member/map-mockup.png"
 								className="w-full h-auto rounded-[22px] object-cover"
 								alt="핀과 가격이 표시된 지도 앱 목업"/>
 						</div>

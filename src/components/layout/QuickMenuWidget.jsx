@@ -5,16 +5,16 @@ import { QuickMenuItem } from './index.jsx';
 import { BrandLogo } from '../ui/index.jsx'; // ⬅️ 모달 컴포넌트 import
 
 // 1. 아이콘 이미지들을 모두 import 합니다.
-import inquireDefault from '../../assets/icons/inquire-default.png';
-import inquireHover from '../../assets/icons/inquire-hover.png';
-import kakaoDefault from '../../assets/icons/kakao-default.png';
-import kakaoHover from '../../assets/icons/kakao-hover.png';
-import priceDefault from '../../assets/icons/price-default.png';
-import priceHover from '../../assets/icons/price-hover.png';
-import noticeDefault from '../../assets/icons/notice-default.png';
-import noticeHover from '../../assets/icons/notice-hover.png';
-import eventDefault from '../../assets/icons/event-default.png';
-import eventHover from '../../assets/icons/event-hover.png';
+import inquireDefault from '../../assets/icons/navigation/inquire-default.png';
+import inquireHover from '../../assets/icons/navigation/inquire-hover.png';
+import kakaoDefault from '../../assets/icons/navigation/kakao-default.png';
+import kakaoHover from '../../assets/icons/navigation/kakao-hover.png';
+import priceDefault from '../../assets/icons/navigation/price-default.png';
+import priceHover from '../../assets/icons/navigation/price-hover.png';
+import noticeDefault from '../../assets/icons/navigation/notice-default.png';
+import noticeHover from '../../assets/icons/navigation/notice-hover.png';
+import eventDefault from '../../assets/icons/navigation/event-default.png';
+import eventHover from '../../assets/icons/navigation/event-hover.png';
 
 // 화살표 SVG
 
@@ -56,7 +56,7 @@ const QuickMenuWidget = ({ onPriceClick, onKakaoClick }) => {
 		}
 	};
 
-	// 💡 카카오톡 버튼 클릭 시 props로 전달받은 함수 호출
+	// 💡 카카오톡 버튼 클릭 시 props로 전달받은 함수 호출 (모달 열기)
 	const handleKakaoClick = () => {
 		if (onKakaoClick) {
 			onKakaoClick();

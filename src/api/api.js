@@ -1,13 +1,21 @@
-// src/api/api.js
+/**
+ * Authentication and API utilities using fetch
+ * Handles login, token management, and authenticated API calls
+ */
 
 const BASE_URL = 'http://localhost:8080';
 
-// 1. 로그인 API
+/**
+ * User login API
+ * @param {string} loginId - User login ID
+ * @param {string} password - User password
+ * @returns {Promise<Object>} Login response with access token
+ * @throws {Error} When login fails
+ */
 export const login = async (loginId, password) => {
 	const response = await fetch(`${BASE_URL}/auth/login`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		// credentials: 'include',
 		body: JSON.stringify({ loginId, password }),
 	});
 
@@ -27,7 +35,11 @@ export const login = async (loginId, password) => {
 	return data;
 };
 
-// 2. 토큰 갱신 API
+/**
+ * Refresh access token using HTTP-only cookie
+ * @returns {Promise<Object>} Refresh response with new access token
+ * @throws {Error} When token refresh fails
+ */
 export const refreshToken = async () => {
 	const response = await fetch(`${BASE_URL}/admin/refresh`, {
 		method: 'POST',
@@ -47,7 +59,10 @@ export const refreshToken = async () => {
 	return data;
 };
 
-// 3. 로그아웃 API
+/**
+ * User logout API
+ * Clears server-side session and client-side tokens
+ */
 export const logout = async () => {
 	// 서버에 로그아웃 요청을 보내 쿠키를 삭제하도록 함
 	await fetch(`${BASE_URL}/admin/logout`, {
@@ -57,8 +72,6 @@ export const logout = async () => {
 
 	// 클라이언트 측에서도 토큰을 깨끗하게 정리
 	localStorage.removeItem('accessToken');
-	// 필요하다면 로그인 페이지로 이동
-	// window.location.href = '/login';
 };
 
 /**
@@ -100,10 +113,8 @@ export const apiCall = async (url, options = {}) => {
 				credentials: 'include',
 			});
 
-		} catch (error) {
+		} catch {
 			// refreshToken 실패 시 로그아웃 처리
-			// 로그인 페이지로 리다이렉트하는 로직을 여기에 추가할 수 있습니다.
-			console.error("토큰 갱신 실패:", error);
 			logout();
 			// 에러를 다시 던져서 호출한 쪽에서 후속 처리를 할 수 있게 함
 			throw new Error('인증이 만료되었습니다.');

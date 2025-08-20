@@ -24,6 +24,10 @@ const UserRoutes = () => {
 	const openModal = () => setIsModalOpen(true);
 	const closeModal = () => setIsModalOpen(false);
 
+	/**
+	 * Scrolls to the pricing section using smooth animation
+	 * Used by quick menu and hash-based navigation
+	 */
 	const scrollToPricingSection = () => {
 		if (pricingSectionRef.current) {
 			pricingSectionRef.current.scrollIntoView({
@@ -33,6 +37,11 @@ const UserRoutes = () => {
 		}
 	};
 
+	/**
+	 * Hash-based navigation effect
+	 * Automatically scrolls to pricing section when URL contains #pricing
+	 * Timeout ensures page content is fully loaded before scrolling
+	 */
 	useEffect(() => {
 		if (location.hash === '#pricing' && location.pathname === '/') {
 			setTimeout(() => {

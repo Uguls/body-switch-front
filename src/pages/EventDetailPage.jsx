@@ -83,10 +83,6 @@ const EventDetailPage = () => {
 
 				{/* 이벤트 이미지 및 상세 내용 */}
 				<div className="flex flex-col items-center w-full relative gap-16 mt-16">
-					<div
-						className="flex justify-center items-center w-full h-[600px] bg-cover bg-no-repeat bg-center"
-						style={{ backgroundImage: `url(${event.imgUrl})` }}
-					></div>
 					<div className="max-w-[1200px] w-full px-4 text-center">
 						<div
 							className="text-base font-medium text-neutral-700 whitespace-pre-wrap"

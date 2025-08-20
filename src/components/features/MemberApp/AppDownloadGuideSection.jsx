@@ -43,7 +43,7 @@ const AppDownloadSection = () => {
 			>
 				{/* [수정] 이미지의 최대 너비를 지정하여 전체 레이아웃을 해치지 않도록 합니다. */}
 				<img
-					src="/src/assets/memberApp/hero/앱 다운로드.png"
+					src="/src/assets/app-screenshots/member/download-guide.png"
 					alt="app Dowload"
 					className="w-full max-w-lg"
 				/>

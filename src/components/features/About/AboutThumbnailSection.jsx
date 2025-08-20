@@ -12,7 +12,7 @@ const ThumbnailSection = () => {
 				</p>
 			</div>
 			<img
-				src="/src/assets/about/회사소개_ 썸네일.png"
+				src="/src/assets/images/about/company-thumbnail.png"
 				alt="thumbnail"
 				// w-full을 유지하여 이미지가 항상 가로 너비에 맞게 표시되도록 합니다.
 				className="w-full h-auto"

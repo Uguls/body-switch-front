@@ -19,7 +19,7 @@ const BrandStory = () => {
 				</div>
 			</div>
 			<img
-				src="/src/assets/about/회사소개_Brand Story_내용.png"
+				src="/src/assets/images/about/brand-story-content.png"
 				alt="brand story"
 				// [수정] 이미지가 너비에 맞게 조절되도록 클래스를 수정합니다.
 				className="w-full h-auto"

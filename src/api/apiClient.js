@@ -26,8 +26,10 @@ apiClient.interceptors.request.use(
 	}
 );
 
-// 3. 응답 인터셉터(Response Interceptor) 설정 (선택사항: 토큰 갱신 로직)
-//    - 서버로부터 응답을 받은 후, .then() 이나 .catch()로 처리되기 전에 가로챕니다.
+/**
+ * Response interceptor - Handles 401 errors and automatic token refresh
+ * Redirects to login page if token refresh fails
+ */
 apiClient.interceptors.response.use(
 	(response) => {
 		// 정상 응답은 그대로 반환
@@ -49,13 +51,11 @@ apiClient.interceptors.response.use(
 				// apiClient.defaults.headers.common['Authorization'] = `Bearer ${data.accessToken}`;
 				// return apiClient(originalRequest);
 
-				console.log("토큰 갱신 로직이 필요합니다.");
 				// 토큰 갱신 실패 시 로그인 페이지로 이동
 				window.location.href = '/bodyswitch-admin/';
 
 			} catch (refreshError) {
 				// 토큰 갱신 실패
-				console.error('토큰 갱신 실패:', refreshError);
 				localStorage.removeItem('accessToken');
 				window.location.href = '/bodyswitch-admin/';
 				return Promise.reject(refreshError);

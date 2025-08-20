@@ -1,10 +1,10 @@
 import React from 'react';
 import { CheckIcon, Button } from '../../ui/index.jsx';
-import faceImg from '../../../assets/ManagementProgram/face_img.png';
+import faceImg from '../../../assets/images/features/face-recognition.png';
 
 const ProgramFeaturesSection = () => {
 	return (
-		<div className="w-full relative bg-white pt-10 sm:pt-16 lg:pt-20 pb-20 sm:pb-30 lg:pb-40 overflow-x-hidden"> {/* [수정] 만약을 위해 최상단에 overflow-x-hidden 추가 */}
+		<div className="w-full relative bg-white pt-10 sm:pt-16 lg:pt-20 pb-20 sm:pb-30 lg:pb-40 overflow-x-hidden">
 			{/* 전체 컨텐츠 컨테이너 */}
 			<div className="flex flex-col justify-start items-center w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-48 gap-8 sm:gap-12 lg:gap-16 z-10">
 				{/* 상단 텍스트 섹션 */}
@@ -43,7 +43,6 @@ const ProgramFeaturesSection = () => {
 							<CheckIcon />
 							인건비 절약
 						</Button>
-						{/* [수정] 모바일에서 줄바꿈이 되도록 flex-wrap을 추가하고, 텍스트 크기를 반응형으로 조절합니다. */}
 						<div className="flex flex-wrap justify-start items-center gap-x-4 gap-y-2">
 							<div className="flex justify-center items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#b3d9dd]">
 								<CheckIcon />
@@ -58,7 +57,6 @@ const ProgramFeaturesSection = () => {
 						<img
 							src={faceImg}
 							alt="바디스위치 안면인식 시스템"
-							// [수정] w-full을 추가하여 이미지가 부모 너비를 넘어가지 않도록 하고, 최대 너비를 지정합니다.
 							className="w-full max-w-sm sm:max-w-md lg:max-w-lg h-auto"
 						/>
 					</div>

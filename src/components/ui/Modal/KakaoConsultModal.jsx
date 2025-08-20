@@ -5,7 +5,7 @@ const KakaoTalkModal = ({ isOpen, onClose }) => {
 	if (!isOpen) return null;
 
 	const handleConnect = () => {
-		window.open('https://pf.kakao.com/_qJmpxd', '_blank');
+		window.open('https://pf.kakao.com/_xbxlain', '_blank');
 		onClose();
 	};
 

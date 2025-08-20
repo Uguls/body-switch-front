@@ -20,7 +20,7 @@ const AboutUs = () => {
 				</div>
 			</div>
 			<img
-				src="/src/assets/about/회사소개_About Us_내용.png"
+				src="/src/assets/images/about/about-us-content.png"
 				alt="About Us content"
 				// [수정] 이미지가 너비에 맞게 조절되도록 클래스를 수정합니다.
 				className="w-full h-auto"

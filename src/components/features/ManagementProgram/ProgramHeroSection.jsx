@@ -4,10 +4,10 @@ import { AutoImageSlider } from '../../ui/index.jsx'; // ui 컴포넌트 경로�
 
 const CapsuleImageSection = () => {
 	const heroImages = [
-		{ src: "/src/assets/ManagementProgram/hero_image_1.png", alt: "바디스위치 이미지 1" },
-		{ src: "/src/assets/ManagementProgram/hero_image_2.jpg", alt: "바디스위치 이미지 2" },
-		{ src: "/src/assets/ManagementProgram/hero_image_3.jpg", alt: "바디스위치 이미지 3" },
-		{ src: "/src/assets/ManagementProgram/hero_image_4.jpg", alt: "바디스위치 이미지 4" }
+		{ src: "/src/assets/images/hero/management-program-1.png", alt: "바디스위치 이미지 1" },
+		{ src: "/src/assets/images/hero/management-program-2.jpg", alt: "바디스위치 이미지 2" },
+		{ src: "/src/assets/images/hero/management-program-3.jpg", alt: "바디스위치 이미지 3" },
+		{ src: "/src/assets/images/hero/management-program-4.jpg", alt: "바디스위치 이미지 4" }
 	];
 
 	return (

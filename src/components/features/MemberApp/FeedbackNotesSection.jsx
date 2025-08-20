@@ -61,12 +61,12 @@ function FeedbackNoteSection() {
 						{/* z-index를 사용하여 요소의 쌓임 순서를 제어합니다. */}
 						{/* 앱 스크린샷 (아래에 위치) */}
 						<div className="w-1/2 p-2.5 rounded-[22px] bg-[#f3f3f3] shadow-xl">
-							<img src="/src/assets/memberApp/chat/강의노트-1.png" className="w-full h-auto rounded-2xl" alt="강의노트 앱 화면"/>
+							<img src="/src/assets/app-screenshots/member/lesson-notes.png" className="w-full h-auto rounded-2xl" alt="강의노트 앱 화면"/>
 						</div>
 						{/* 운동 및 피드백 이미지 (위에 위치) */}
 						<div className="w-3/4 flex flex-col gap-4 -ml-[25%] z-10">
-							<img src="/src/assets/memberApp/chat/이미지-1.png" className="w-full h-auto rounded-2xl object-cover shadow-xl" alt="운동 자세 이미지"/>
-							<img src="/src/assets/memberApp/chat/이미지-2.png" className="w-full h-auto object-cover" alt="피드백 내용"/>
+							<img src="/src/assets/app-screenshots/member/feedback-image-1.png" className="w-full h-auto rounded-2xl object-cover shadow-xl" alt="운동 자세 이미지"/>
+							<img src="/src/assets/app-screenshots/member/feedback-image-2.png" className="w-full h-auto object-cover" alt="피드백 내용"/>
 						</div>
 					</div>
 

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import sportIconTop1 from '../../../assets/ManagementProgram/sport_icon_top_1.png';
-import sportIconTop2 from '../../../assets/ManagementProgram/sport_icon_top_2.png';
-import sportIconTop3 from '../../../assets/ManagementProgram/sport_icon_top_3.png';
-import sportIconTop4 from '../../../assets/ManagementProgram/sport_icon_top_4.png';
-import sportIconBottom1 from '../../../assets/ManagementProgram/sport_icon_bottom_1.png';
-import sportIconBottom2 from '../../../assets/ManagementProgram/sport_icon_bottom_2.png';
-import sportIconBottom3 from '../../../assets/ManagementProgram/sport_icon_bottom_3.png';
-import sportIconBottom4 from '../../../assets/ManagementProgram/sport_icon_bottom_4.png';
+import sportIconTop1 from '../../../assets/images/features/sport-icon-1.png';
+import sportIconTop2 from '../../../assets/images/features/sport-icon-2.png';
+import sportIconTop3 from '../../../assets/images/features/sport-icon-3.png';
+import sportIconTop4 from '../../../assets/images/features/sport-icon-4.png';
+import sportIconBottom1 from '../../../assets/images/features/sport-icon-5.png';
+import sportIconBottom2 from '../../../assets/images/features/sport-icon-6.png';
+import sportIconBottom3 from '../../../assets/images/features/sport-icon-7.png';
+import sportIconBottom4 from '../../../assets/images/features/sport-icon-8.png';
 
 const sportIcons = [
 	sportIconTop1,

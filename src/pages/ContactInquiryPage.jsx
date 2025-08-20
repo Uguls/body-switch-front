@@ -102,7 +102,7 @@ const InquiryPage = () => {
 			newErrors.content = '필수 입력 항목입니다.';
 		}
 
-		if (formData.email && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) {
+		if (formData.email && !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) {
 			if (!newErrors.email) newErrors.email = '유효한 이메일 주소를 입력해주세요.';
 		}
 

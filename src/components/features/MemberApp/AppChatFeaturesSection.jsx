@@ -1,8 +1,8 @@
 import React from 'react';
 
 // 사용할 이미지 파일들을 import 합니다.
-import gangsaTalkImage from '/src/assets/memberApp/chat/강사_talk.png';
-import centerTalkImage from '/src/assets/memberApp/chat/센터_talk.png';
+import gangsaTalkImage from '/src/assets/app-screenshots/instructor/chat-interface.png';
+import centerTalkImage from '/src/assets/app-screenshots/member/chat-interface.png';
 
 function ChatSection() {
 	return (

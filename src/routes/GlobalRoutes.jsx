@@ -19,11 +19,7 @@ const GlobalRoutes = () => {
             {/* 관리자 전용 라우트 */}
             <Route
                 path={`${ADMIN_PATH}/*`}
-                element={
-                    // <AdminRoute>
-                        <AdminRoutes />
-                    // </AdminRoute>
-                }
+                element={<AdminRoutes />}
             />
             
             {/* 일반 사용자 라우트 (모든 경로) */}
