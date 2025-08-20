@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 1. Axios 인스턴스 생성
 const apiClient = axios.create({
-	baseURL: 'http://localhost:8080', // 기본 URL 설정
+	baseURL: import.meta.env.VITE_API_BASE_URL, // 환경변수에서 기본 URL 설정
 	withCredentials: true, // 쿠키 기반 인증 시 필요할 수 있음
 });
 
@@ -44,7 +44,7 @@ apiClient.interceptors.response.use(
 
 			try {
 				// 토큰 갱신 API 호출 (이전에 만든 api.js의 refreshToken 함수 활용 가능)
-				// const { data } = await axios.post('http://localhost:8080/admin/refresh', {}, { withCredentials: true });
+				// const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/admin/refresh`, {}, { withCredentials: true });
 				// localStorage.setItem('accessToken', data.accessToken);
 
 				// 갱신된 토큰으로 원래 요청을 다시 시도

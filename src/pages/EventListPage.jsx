@@ -13,7 +13,7 @@ const EventListPage = () => {
 	const fetchEvents = async (page = 0, status = "IN_PROGRESS") => {
 		setLoading(true);
 		try {
-			const response = await axios.get(`http://localhost:8080/event`, {
+			const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/event`, {
 				params: {
 					filter: status,
 					page: page,
@@ -171,14 +171,15 @@ const EventListPage = () => {
 							<Link
 								key={event.id}
 								to={`/event/${event.id}`}
-								className="flex justify-start items-center w-full h-64 relative rounded-2xl bg-white shadow-[0px_0px_12px_0_rgba(0,0,0,0.16)] overflow-hidden transition-all duration-500 transform hover:scale-[1.01]"
+								className="flex justify-start items-center w-full h-64 relative rounded-2xl bg-white shadow-[0px_0px_12px_0_rgba(0,0,0,0.16)] overflow-hidden"
 							>
 								{/* 이미지 컨테이너 */}
-								<div className="flex-grow-0 flex-shrink-0 w-[30%] h-64 relative overflow-hidden rounded-l-2xl transition-all duration-800 hover:w-[35%]">
-									<div
-										className="w-full h-full bg-cover bg-no-repeat bg-center"
-										style={{ backgroundImage: `url(${event.imageUrl})` }}
-									></div>
+								<div className="flex-grow-0 flex-shrink-0 w-[30%] h-full relative overflow-hidden rounded-l-2xl transition-all duration-800 hover:w-[35%] bg-gray-100">
+									<img 
+										src={event.imageUrl} 
+										alt={event.title}
+										className="w-full h-full object-cover"
+									/>
 								</div>
 								{/* 텍스트 컨테이너 */}
 								<div className="flex flex-col justify-between items-start flex-grow p-6 transition-all duration-500 hover:flex-shrink">

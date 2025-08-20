@@ -41,7 +41,8 @@ const ArrowDown = () => (
 const QuickMenuWidget = ({ onPriceClick, onKakaoClick }) => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const [isExpanded, setIsExpanded] = useState(true);
+	// 모바일에서는 기본적으로 축소된 상태로 시작
+	const [isExpanded, setIsExpanded] = useState(window.innerWidth >= 768);
 
 	const toggleMenu = () => {
 		setIsExpanded(!isExpanded);
@@ -72,7 +73,7 @@ const QuickMenuWidget = ({ onPriceClick, onKakaoClick }) => {
 	];
 
 	return (
-		<div className="fixed top-1/2 right-2 sm:right-4 lg:right-6 -translate-y-1/2 z-50 flex flex-col items-center p-1 sm:p-2 rounded-xl bg-white/90 backdrop-blur-sm shadow-2xl scale-75 sm:scale-90 lg:scale-100">
+		<div className="fixed top-1/2 right-1 sm:right-4 lg:right-6 -translate-y-1/2 z-50 flex flex-col items-center p-1 sm:p-2 rounded-xl bg-white/90 backdrop-blur-sm shadow-2xl scale-50 sm:scale-75 lg:scale-100">
 			{isExpanded ? (
 				<>
 					<div className="py-1">

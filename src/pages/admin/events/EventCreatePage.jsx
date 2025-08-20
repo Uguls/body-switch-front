@@ -200,7 +200,7 @@ const EventCreatePage = () => {
 							</div>
 							<div className="flex items-center gap-4">
 								<div 
-									className="flex flex-col justify-center items-center h-[220px] w-[200px] gap-3 rounded-lg bg-white border border-[#d9d9d9] cursor-pointer hover:bg-gray-50 transition-colors"
+									className="flex flex-col justify-center items-center h-[200px] w-[320px] gap-3 rounded-lg bg-white border border-[#d9d9d9] cursor-pointer hover:bg-gray-50 transition-colors"
 									onClick={handleImageUploadClick}
 								>
 									{imagePreview ? (
@@ -214,9 +214,9 @@ const EventCreatePage = () => {
 											<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<path d="M12.875 18.5V9.33125L9.95 12.2562L8.375 10.625L14 5L19.625 10.625L18.05 12.2562L15.125 9.33125V18.5H12.875ZM7.25 23C6.63125 23 6.10175 22.7799 5.6615 22.3396C5.22125 21.8994 5.00075 21.3695 5 20.75V17.375H7.25V20.75H20.75V17.375H23V20.75C23 21.3687 22.7799 21.8986 22.3396 22.3396C21.8994 22.7806 21.3695 23.0007 20.75 23H7.25Z" fill="#58B9C1"></path>
 											</svg>
-											<p className="w-[87px] text-center text-[#7dc8cf]">
+											<p className="w-[120px] text-center text-[#7dc8cf]">
 												<span className="text-base font-semibold">이미지 업로드</span><br />
-												<span className="text-xs">1200×900px</span>
+												<span className="text-xs">권장: 16:10 비율</span>
 											</p>
 										</>
 									)}

@@ -18,11 +18,11 @@ const NoticeListPage = () => {
 				let response;
 				if (isSearching && currentSearchKeyword.trim()) {
 					// 검색 API 호출 - 미리 구성된 URL로 전달
-					const searchUrl = `http://localhost:8080/notice/search/${currentSearchKeyword.trim()}?page=${currentPage}`;
+					const searchUrl = `${import.meta.env.VITE_API_BASE_URL}/notice/search/${currentSearchKeyword.trim()}?page=${currentPage}`;
 					response = await axios.get(searchUrl);
 				} else {
 					// 전체 목록 API 호출
-					response = await axios.get(`http://localhost:8080/notice?page=${currentPage}`);
+					response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/notice?page=${currentPage}`);
 				}
 				setNotices(response.data.notices);
 				setCurrentPage(response.data.currentPage);

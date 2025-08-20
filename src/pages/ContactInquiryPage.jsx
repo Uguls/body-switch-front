@@ -125,7 +125,7 @@ const InquiryPage = () => {
 			try {
 				// NOTE: The endpoint URL should be configured for your environment.
 				// Using a placeholder for the example.
-				await axios.post('http://localhost:8080/inquiries', formData);
+				await axios.post(`${import.meta.env.VITE_API_BASE_URL}/inquiries`, formData);
 				alert('문의가 성공적으로 접수되었습니다. 감사합니다.');
 				navigate('/');
 			} catch (err) {

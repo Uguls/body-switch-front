@@ -17,7 +17,7 @@ const EventDetailPage = () => {
 	useEffect(() => {
 		const fetchEventDetail = async () => {
 			try {
-				const response = await axios.get(`http://localhost:8080/event/${id}`);
+				const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/event/${id}`);
 				setEvent(response.data);
 			} catch (err) {
 				setError("이벤트 상세 정보를 불러오는 데 실패했습니다.");

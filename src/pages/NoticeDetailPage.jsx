@@ -12,7 +12,7 @@ const NoticeDetailPage = () => {
 	useEffect(() => {
 		const fetchNoticeDetail = async () => {
 			try {
-				const response = await axios.get(`http://localhost:8080/notice/${id}`);
+				const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/notice/${id}`);
 				setNotice(response.data);
 			} catch (err) {
 				setError("공지사항 상세 정보를 불러오는 데 실패했습니다.");
