@@ -24,12 +24,12 @@ const InfoPair = ({ label, children, isLastInRow = false }) => (
 const KOREAN_TO_ENGLISH_STATUS = {
 	'미확인': 'PENDING',
 	'처리중': 'PROCESSING',
-	'완료': 'COMPLETED',
+	'완료': 'COMPLETE',
 };
 const ENGLISH_TO_KOREAN_STATUS = {
 	'PENDING': '미확인',
 	'PROCESSING': '처리중',
-	'COMPLETED': '완료',
+	'COMPLETE': '완료',
 };
 
 
@@ -63,14 +63,25 @@ const InquiryDetail = () => {
 		const newEnglishStatus = KOREAN_TO_ENGLISH_STATUS[newKoreanStatus];
 		if (!newEnglishStatus) return;
 
+		// 원래 상태 백업 (롤백용)
 		const originalInquiry = inquiry;
+		
+		// UI를 먼저 업데이트 (낙관적 업데이트)
 		setInquiry(prev => ({ ...prev, status: newEnglishStatus }));
 
 		try {
 			await apiClient.patch(`/inquiries/${id}/change-status`, { status: newEnglishStatus });
-		} catch {
+			
+			// 성공 시 알림창 표시
+			alert(`문의 상태가 "${newKoreanStatus}"(으)로 변경되었습니다.`);
+			
+		} catch (error) {
+			console.error('상태 변경 실패:', error);
+			
+			// 실패 시 원래 상태로 롤백
 			setInquiry(originalInquiry);
-			alert("상태 업데이트에 실패했습니다.");
+			
+			alert("상태 변경에 실패했습니다. 다시 시도해주세요.");
 		}
 	};
 

@@ -102,6 +102,7 @@ const InquiriesListPage = () => {
 	const handleStatusChange = async (inquiryId, newKoreanStatus) => {
 		const newApiStatus = KOREAN_TO_STATUS[newKoreanStatus];
 
+		// UI를 먼저 업데이트 (낙관적 업데이트)
 		setInquiries(prevInquiries =>
 			prevInquiries.map(inquiry =>
 				inquiry.id === inquiryId ? { ...inquiry, status: newApiStatus } : inquiry
@@ -110,8 +111,23 @@ const InquiriesListPage = () => {
 
 		try {
 			await apiClient.patch(`/inquiries/${inquiryId}/change-status`, { status: newApiStatus });
-		} catch {
-			alert('상태 변경에 실패했습니다. 데이터를 새로고침합니다.');
+			
+			// 성공 시 알림창 표시
+			alert(`문의 상태가 "${newKoreanStatus}"(으)로 변경되었습니다.`);
+			
+		} catch (error) {
+			console.error('상태 변경 실패:', error);
+			
+			// 실패 시 원래 상태로 롤백
+			setInquiries(prevInquiries =>
+				prevInquiries.map(inquiry =>
+					inquiry.id === inquiryId ? { ...inquiry, status: inquiry.status } : inquiry
+				)
+			);
+			
+			alert('상태 변경에 실패했습니다. 다시 시도해주세요.');
+			
+			// 데이터 새로고침
 			setSearchParams(prev => ({...prev}));
 		}
 	};

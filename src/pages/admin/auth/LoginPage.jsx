@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { login } from '../../../api/api.js';
+import { useAuth } from '../../../contexts/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
@@ -7,8 +7,10 @@ const LoginPage = () => {
 	const [password, setPassword] = useState('');
 	const [isRememberId, setIsRememberId] = useState(false);
 	const [error, setError] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 
-	const navigate = useNavigate(); // 페이지 이동 함수
+	const navigate = useNavigate();
+	const { login, isAuthenticated } = useAuth();
 
 	// 컴포넌트가 처음 렌더링될 때 저장된 아이디가 있는지 확인
 	useEffect(() => {
@@ -19,12 +21,21 @@ const LoginPage = () => {
 		}
 	}, []);
 
+	// 이미 인증된 사용자는 관리자 페이지로 리다이렉트
+	useEffect(() => {
+		if (isAuthenticated) {
+			navigate('/bodyswitch-admin/inquiries');
+		}
+	}, [isAuthenticated, navigate]);
+
 	const handleLogin = async (e) => {
-		e.preventDefault(); // form의 기본 제출 동작 방지
-		setError(''); // 이전 에러 메시지 초기화
+		e.preventDefault();
+		setError('');
+		setIsLoading(true);
 
 		if (!loginId || !password) {
 			setError('아이디와 비밀번호를 모두 입력해주세요.');
+			setIsLoading(false);
 			return;
 		}
 
@@ -39,17 +50,19 @@ const LoginPage = () => {
 			}
 
 			console.log('로그인 성공:', data);
-			alert(`${data.username}님 환영합니다!`);
-
-			navigate('/bodyswitch-admin/inquiries');
+			
+			// ✅ 로그인 성공 시 useEffect에서 isAuthenticated가 true로 변경되면 자동 리다이렉트
+			// navigate() 호출 제거 - useEffect에서 처리
 
 		} catch (err) {
-			setError(err.message);
+			setError(err.message || '로그인에 실패했습니다.');
 			console.error('로그인 실패:', err);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
-	const isButtonDisabled = !loginId || !password;
+	const isButtonDisabled = !loginId || !password || isLoading;
 
 	return (
 		<div className="w-full h-screen relative overflow-hidden bg-white flex">
@@ -135,7 +148,7 @@ const LoginPage = () => {
 							disabled={isButtonDisabled}
 							className={`w-full h-[60px] rounded-lg text-2xl font-bold text-white transition-colors duration-300 ${isButtonDisabled ? 'bg-[#ccc] cursor-not-allowed' : 'bg-[#4ab3bc] hover:bg-[#3a9a9a]'}`}
 						>
-							로그인
+							{isLoading ? '로그인 중...' : '로그인'}
 						</button>
 					</form>
 				</div>

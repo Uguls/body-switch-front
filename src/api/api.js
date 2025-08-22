@@ -1,18 +1,24 @@
 /**
  * Authentication and API utilities using fetch
- * Handles login, token management, and authenticated API calls
+ * @deprecated 이 파일은 더 이상 사용되지 않습니다.
+ * AuthContext와 apiClient.js를 사용하세요.
+ * 
+ * Legacy authentication functions (localStorage 기반)
+ * 현재는 AuthContext에서 메모리 기반으로 토큰을 관리합니다.
  */
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 /**
  * User login API
+ * @deprecated Use AuthContext.login() instead
  * @param {string} loginId - User login ID
  * @param {string} password - User password
  * @returns {Promise<Object>} Login response with access token
  * @throws {Error} When login fails
  */
 export const login = async (loginId, password) => {
+	console.warn('api.js login is deprecated. Use AuthContext instead.');
 	const response = await fetch(`${BASE_URL}/auth/login`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -37,10 +43,12 @@ export const login = async (loginId, password) => {
 
 /**
  * Refresh access token using HTTP-only cookie
+ * @deprecated Use AuthContext.refreshAccessToken() instead
  * @returns {Promise<Object>} Refresh response with new access token
  * @throws {Error} When token refresh fails
  */
 export const refreshToken = async () => {
+	console.warn('api.js refreshToken is deprecated. Use AuthContext instead.');
 	const response = await fetch(`${BASE_URL}/admin/refresh`, {
 		method: 'POST',
 		credentials: 'include', // 쿠키의 refreshToken을 자동으로 전송
@@ -61,9 +69,11 @@ export const refreshToken = async () => {
 
 /**
  * User logout API
+ * @deprecated Use AuthContext.logout() instead
  * Clears server-side session and client-side tokens
  */
 export const logout = async () => {
+	console.warn('api.js logout is deprecated. Use AuthContext instead.');
 	// 서버에 로그아웃 요청을 보내 쿠키를 삭제하도록 함
 	await fetch(`${BASE_URL}/admin/logout`, {
 		method: 'POST',
@@ -76,11 +86,13 @@ export const logout = async () => {
 
 /**
  * 4. 인증이 필요한 API 호출을 위한 래퍼(wrapper) 함수
+ * @deprecated Use apiClient from apiClient.js instead
  * @param {string} url - 요청할 엔드포인트 (e.g., '/admin/products')
  * @param {object} options - fetch API에 전달할 추가 옵션
  * @returns {Promise<Response>} - fetch 응답 객체
  */
 export const apiCall = async (url, options = {}) => {
+	console.warn('api.js apiCall is deprecated. Use apiClient instead.');
 	const accessToken = localStorage.getItem('accessToken');
 
 	const headers = {

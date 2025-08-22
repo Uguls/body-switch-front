@@ -1,13 +1,13 @@
 import React from 'react';
 
-import sportIconTop1 from '../../../assets/images/features/sport-icon-1.png';
-import sportIconTop2 from '../../../assets/images/features/sport-icon-2.png';
-import sportIconTop3 from '../../../assets/images/features/sport-icon-3.png';
-import sportIconTop4 from '../../../assets/images/features/sport-icon-4.png';
-import sportIconBottom1 from '../../../assets/images/features/sport-icon-5.png';
-import sportIconBottom2 from '../../../assets/images/features/sport-icon-6.png';
-import sportIconBottom3 from '../../../assets/images/features/sport-icon-7.png';
-import sportIconBottom4 from '../../../assets/images/features/sport-icon-8.png';
+import sportIconTop1 from '../../../assets/images/features/sport-icon-1.ico';
+import sportIconTop2 from '../../../assets/images/features/sport-icon-2.ico';
+import sportIconTop3 from '../../../assets/images/features/sport-icon-3.ico';
+import sportIconTop4 from '../../../assets/images/features/sport-icon-4.ico';
+import sportIconBottom1 from '../../../assets/images/features/sport-icon-5.ico';
+import sportIconBottom2 from '../../../assets/images/features/sport-icon-6.ico';
+import sportIconBottom3 from '../../../assets/images/features/sport-icon-7.ico';
+import sportIconBottom4 from '../../../assets/images/features/sport-icon-8.ico';
 
 const sportIcons = [
 	sportIconTop1,
@@ -87,9 +87,10 @@ const PlatformIntegrationSection = () => {
 							<div className="flex justify-center items-center absolute left-0 top-0 gap-2.5 px-4 py-2 sm:px-8 sm:py-4 rounded-tl-2xl rounded-br-2xl bg-[#ccc]">
 								<p className="text-3xl sm:text-5xl font-medium text-left text-[#f2f2f2]">A사</p>
 							</div>
-							<div className="flex flex-col justify-start items-center w-full max-w-xs gap-6 px-6 pt-20 pb-6 rounded-2xl bg-[#e6e6e6]">
-								<p className="w-full font-bold text-center text-[#b3b3b3] break-keep" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.875rem)' }}>
-									<span>휘트니스 </span><span>1 종목</span>
+							<div className="flex flex-col justify-start items-center w-full max-w-sm gap-6 px-6 pt-20 pb-6 rounded-2xl bg-[#e6e6e6]">
+								<p className="w-full font-bold text-center text-[#b3b3b3] break-keep min-h-[3.5rem] flex flex-col justify-center" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.875rem)' }}>
+									<span>휘트니스</span>
+									<span>1종목</span>
 								</p>
 								<img src={sportIcons[0]} className="rounded-[20px] object-cover mix-blend-luminosity grayscale" style={{ width: 'clamp(7rem, 20vw, 9rem)', height: 'clamp(7rem, 20vw, 9rem)' }} alt="휘트니스 이미지" />
 							</div>
@@ -99,9 +100,10 @@ const PlatformIntegrationSection = () => {
 							<div className="flex justify-center items-center absolute left-0 top-0 gap-2.5 px-4 py-2 sm:px-8 sm:py-4 rounded-tl-2xl rounded-br-2xl bg-[#ccc]">
 								<p className="text-3xl sm:text-5xl font-medium text-left text-[#f2f2f2]">B사</p>
 							</div>
-							<div className="flex flex-col justify-start items-center w-full max-w-xs gap-6 px-6 pt-20 pb-6 rounded-2xl bg-[#e6e6e6]">
-								<p className="w-full font-bold text-center text-[#b3b3b3] break-keep" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.875rem)' }}>
-									<span>골프</span><br/><span>1 종목</span>
+							<div className="flex flex-col justify-start items-center w-full max-w-sm gap-6 px-6 pt-20 pb-6 rounded-2xl bg-[#e6e6e6]">
+								<p className="w-full font-bold text-center text-[#b3b3b3] break-keep min-h-[3.5rem] flex flex-col justify-center" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.875rem)' }}>
+									<span>골프</span>
+									<span>1종목</span>
 								</p>
 								<img src={sportIcons[2]} className="rounded-[20px] object-cover mix-blend-luminosity grayscale" style={{ width: 'clamp(7rem, 20vw, 9rem)', height: 'clamp(7rem, 20vw, 9rem)' }} alt="골프 이미지" />
 							</div>

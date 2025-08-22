@@ -38,8 +38,11 @@ const AppDownloadSection = () => {
 					</p>
 				</div>
 			</div>
-			<div
-				className="flex justify-start items-center relative overflow-hidden p-5 rounded-[15px] bg-white border border-white"
+			<a 
+				href="https://m.site.naver.com/1EcxT" 
+				target="_blank" 
+				rel="noopener noreferrer"
+				className="flex justify-start items-center relative overflow-hidden p-5 rounded-[15px] bg-white border border-white cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
 			>
 				{/* [수정] 이미지의 최대 너비를 지정하여 전체 레이아웃을 해치지 않도록 합니다. */}
 				<img
@@ -47,7 +50,7 @@ const AppDownloadSection = () => {
 					alt="app Dowload"
 					className="w-full max-w-lg"
 				/>
-			</div>
+			</a>
 		</div>
 	);
 };

@@ -54,40 +54,43 @@ const NoticeDetailPage = () => {
 	}
 
 	return (
-		<div className="pt-24 flex flex-col items-center w-full">
-			<div className="flex flex-col items-center max-w-[1536px] mx-auto">
+		<div className="pt-24 flex flex-col items-center w-full px-4">
+			<div className="flex flex-col items-center max-w-[1536px] mx-auto w-full">
 				{/* 제목 섹션 */}
 				<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
-					<p className="text-[40px] font-medium text-[#333]">공지사항</p>
+					<p className="text-[32px] md:text-[40px] font-medium text-[#333]"
+					   style={{fontFamily: 'esamanru, sans-serif'}}>
+						공지사항
+					</p>
 				</div>
 
 				{/* 상세 정보 헤더 */}
-				<div className="flex flex-col justify-start items-center w-[628px] relative gap-[9px] mt-16">
-					<div className="flex justify-start items-center relative gap-4">
-						<p className="flex-grow-0 flex-shrink-0 text-2xl font-semibold text-left text-[#4ab3bc]"
+				<div className="flex flex-col justify-start items-center w-full max-w-[628px] relative gap-[9px] mt-8 md:mt-16">
+					<div className="flex flex-col md:flex-row justify-center items-center relative gap-2 md:gap-4">
+						<p className="text-lg md:text-2xl font-semibold text-center text-[#4ab3bc]"
 						   style={{fontFamily: 'esamanru, sans-serif'}}>
 							공지사항
 						</p>
-						<div className="flex-grow-0 flex-shrink-0 w-0.5 h-5 rounded-[999px] bg-[#e6e6e6]"></div>
-						<p className="flex-grow-0 flex-shrink-0 text-2xl font-medium text-left text-[#b3b3b3]">
+						<div className="hidden md:block w-0.5 h-5 rounded-[999px] bg-[#e6e6e6]"></div>
+						<p className="text-lg md:text-2xl font-medium text-center text-[#b3b3b3]">
 							{notice.createdAt}
 						</p>
 					</div>
-					<p className="self-stretch flex-grow-0 flex-shrink-0 w-[628px] text-[40px] font-semibold text-center text-[#333]">
+					<p className="w-full text-[28px] md:text-[40px] font-semibold text-center text-[#333] px-4">
 						{notice.title}
 					</p>
 				</div>
 
 				{/* 상세 내용 본문 */}
-				<div className="mt-8 mb-16">
+				<div className="mt-8 mb-16 w-full">
 					{/* 💡 dangerouslySetInnerHTML을 사용하여 HTML 렌더링 */}
 					<div
-						className="max-w-[1200px] text-base font-medium text-center text-neutral-700 whitespace-pre-wrap"
+						className="max-w-[1200px] mx-auto text-sm md:text-base font-medium text-center text-neutral-700 whitespace-pre-wrap px-4"
 						style={{fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger"}}
 						dangerouslySetInnerHTML={{ __html: notice.content }}
 					/>
 					{notice.imgUrls && notice.imgUrls.length > 0 && (
-						<div className="flex flex-col gap-4 mt-8">
+						<div className="flex flex-col gap-4 mt-8 max-w-[1200px] mx-auto px-4">
 							{notice.imgUrls.map((url, index) => (
 								<img key={index} src={url} alt={`Notice Image ${index}`} className="w-full h-auto rounded-md" />
 							))}
@@ -97,7 +100,7 @@ const NoticeDetailPage = () => {
 
 				{/* 목록으로 버튼 */}
 				<div
-					className="flex justify-start items-center relative gap-2 px-4 py-3 rounded-2xl bg-[#666] cursor-pointer"
+					className="flex justify-center items-center relative gap-2 px-4 py-3 rounded-2xl bg-[#666] cursor-pointer"
 					onClick={handleGoBack}
 				>
 					<svg
@@ -106,7 +109,7 @@ const NoticeDetailPage = () => {
 						viewBox="0 0 48 48"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
-						className="flex-grow-0 flex-shrink-0 w-12 h-12 relative"
+						className="flex-grow-0 flex-shrink-0 w-8 md:w-12 h-8 md:h-12 relative"
 						preserveAspectRatio="xMidYMid meet"
 					>
 						<path
@@ -114,7 +117,7 @@ const NoticeDetailPage = () => {
 							fill="white"
 						></path>
 					</svg>
-					<p className="text-[32px] font-medium text-white">목록으로</p>
+					<p className="text-[24px] md:text-[32px] font-medium text-white">목록으로</p>
 				</div>
 			</div>
 		</div>

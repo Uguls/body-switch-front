@@ -31,7 +31,7 @@ const ScrollToTopButton = () => {
 	}
 
 	return (
-		<div className="fixed bottom-16 right-2 sm:right-4 lg:right-6 z-40">
+		<div className="fixed bottom-4 right-4 z-40">
 			<button
 				onClick={scrollToTop}
 				className="relative hover:scale-110 transition-transform duration-200 outline-none focus:outline-none active:outline-none"
@@ -54,7 +54,7 @@ const ScrollToTopButton = () => {
 					viewBox="0 0 104 104"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
-					className="w-[120px] h-[120px]"
+					className="w-20 h-20 md:w-16 md:h-16 lg:w-25 lg:h-25"
 					preserveAspectRatio="xMidYMid meet"
 				>
 					<defs>

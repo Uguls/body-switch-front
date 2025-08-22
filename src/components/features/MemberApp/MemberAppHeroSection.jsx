@@ -1,7 +1,7 @@
 import React from 'react';
 
 // 이미지 import
-import instructorAppImage from '../../../assets/app-screenshots/instructor/home-screen.png';
+import instructorAppImage from '../../../assets/app-screenshots/instructor/home-screen.jpg';
 import memberAppImage from '../../../assets/app-screenshots/member/home-screen.png';
 import appDownload from '../../../assets/app-screenshots/member/download-guide.png';
 
@@ -47,9 +47,16 @@ const MemberAppHeroSection = () => {
 					</div>
 					<div className="flex flex-col justify-start items-center lg:items-start w-full max-w-md mt-10">
 						<p className="text-2xl font-bold text-black">앱 다운로드</p>
-						<img src={appDownload} alt="App Download"
-						     className="w-full h-auto rounded-xl"
-						/>
+						<a 
+							href="https://m.site.naver.com/1EcxT" 
+							target="_blank" 
+							rel="noopener noreferrer"
+							className="cursor-pointer hover:opacity-80 transition-opacity duration-300"
+						>
+							<img src={appDownload} alt="App Download"
+							     className="w-full h-auto rounded-xl"
+							/>
+						</a>
 					</div>
 				</div>
 

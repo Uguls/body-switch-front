@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import apiClient from "../../../api/apiClient.js";
 import { SuccessModal } from "../../../components/admin/index.js";
+import { compressImagesInHTML, createCompressedImageHandler } from '../../../utils/imageCompression.js';
+import '/src/styles/ReactQuill.css'
 
 const EventCreatePage = () => {
 	const navigate = useNavigate();
@@ -22,32 +24,24 @@ const EventCreatePage = () => {
 	/**
 	 * React Quill 에디터의 툴바 옵션 설정
 	 */
-	const modules = {
-		toolbar: [
-			['undo', 'redo'],
-			[{ 'header': [1, 2, false] }],
-			[{ 'align': [] }],
-			[{ 'color': [] }],
-			['bold', 'italic', 'underline', 'strike'],
-			[{ 'list': 'ordered'}, { 'list': 'bullet' }],
-			['link', 'image'],
-			['code-block', 'blockquote'],
-			['clean']
-		],
-	};
-
-	/**
-	 * React Quill 에디터의 기본 텍스트 색상을 검정색으로 지정하기 위한 커스텀 스타일
-	 */
-	const customQuillStyle = `
-    .ql-editor {
-      color: #000;
-      min-height: 450px;
-    }
-    .ql-snow .ql-picker-label {
-        color: #000;
-    }
-  `;
+	const modules = useMemo(() => ({
+		toolbar: {
+			container: [
+				['undo', 'redo'],
+				[{ 'header': [1, 2, false] }],
+				[{ 'align': [] }],
+				[{ 'color': [] }],
+				['bold', 'italic', 'underline', 'strike'],
+				[{ 'list': 'ordered'}, { 'list': 'bullet' }],
+				['link', 'image'],
+				['code-block', 'blockquote'],
+				['clean']
+			],
+			handlers: {
+				image: createCompressedImageHandler(1200, 1200, 0.8)
+			}
+		},
+	}), []);
 
 	/**
 	 * 이미지 파일 선택 핸들러
@@ -88,7 +82,7 @@ const EventCreatePage = () => {
 	/**
 	 * '작성완료' 버튼 클릭 시 실행될 핸들러
 	 */
-	const handleSubmit = async () => {
+	const handleSubmit = useCallback( async () => {
 		// 유효성 검사
 		if (!title.trim()) {
 			alert('제목을 입력해주세요.');
@@ -118,11 +112,14 @@ const EventCreatePage = () => {
 		setIsSubmitting(true);
 
 		try {
+			// 이미지 압축 적용
+			const compressedContent = await compressImagesInHTML(content, 1200, 1200, 0.8);
+			
 			// 1단계: 이벤트 생성
 			const eventData = {
 				title,
 				subTitle,
-				content,
+				content: compressedContent,
 				startDate,
 				endDate,
 			};
@@ -157,7 +154,7 @@ const EventCreatePage = () => {
 		} finally {
 			setIsSubmitting(false);
 		}
-	};
+	}, [title. subTitle, content, startDate, endDate]);
 
 	const handleModalClose = () => {
 		setShowSuccessModal(false);
@@ -166,8 +163,6 @@ const EventCreatePage = () => {
 
 	return (
 		<>
-			<style>{customQuillStyle}</style>
-
 			<div className="flex flex-col items-center w-full min-h-screen p-4 sm:p-8 bg-gray-50 font-sans">
 				{/* 페이지 타이틀 */}
 				<div className="flex justify-center items-center w-full max-w-6xl relative py-8 border-b-2 border-[#e6e6e6]"

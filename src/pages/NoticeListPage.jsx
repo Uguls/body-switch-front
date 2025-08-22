@@ -154,53 +154,53 @@ const NoticeListPage = () => {
 
 	if (!notices || notices.length === 0) {
 		return (
-			<div className="pt-24 flex flex-col items-center w-full">
-				<div className="flex flex-col items-center max-w-[1536px] mx-auto">
+			<div className="pt-24 flex flex-col items-center w-full px-4">
+				<div className="flex flex-col items-center max-w-[1536px] mx-auto w-full">
 					{/* 제목 섹션 */}
 					<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
-						<p className="text-[40px] font-medium text-[#333]"
+						<p className="text-[32px] md:text-[40px] font-medium text-[#333]"
 						   style={{fontFamily: 'esamanru, sans-serif'}}>
 							공지사항
 						</p>
 					</div>
-					<div className="flex justify-center items-center w-full gap-2 py-4 bg-[#f2f2f2] border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
-						<div className="flex justify-center items-center w-[480px] h-12 px-4 py-3 rounded-lg bg-white border border-[#d9d9d9]">
+					<div className="flex flex-col md:flex-row justify-center items-center w-full gap-2 py-4 bg-[#f2f2f2] border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
+						<div className="flex justify-center items-center w-full md:w-[480px] h-12 px-4 py-3 rounded-lg bg-white border border-[#d9d9d9]">
 							<input
 								type="text"
 								value={searchKeyword}
 								onChange={handleSearchInputChange}
 								onKeyPress={handleSearchKeyPress}
 								placeholder="검색어를 입력해 주세요"
-								className="w-full h-full text-base font-medium outline-none bg-transparent text-[#333] placeholder-[#a6a6a6]"
+								className="w-full h-full text-sm md:text-base font-medium outline-none bg-transparent text-[#333] placeholder-[#a6a6a6]"
 							/>
 						</div>
 						<div
 							onClick={handleSearch}
-							className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
+							className="flex justify-center items-center h-12 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
 						>
-							<p className="text-xl font-medium text-white">검색</p>
+							<p className="text-lg md:text-xl font-medium text-white">검색</p>
 						</div>
 						{isSearching && (
 							<div
 								onClick={handleSearchReset}
-								className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
+								className="flex justify-center items-center h-12 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
 							>
-								<p className="text-xl font-medium text-white">전체보기</p>
+								<p className="text-lg md:text-xl font-medium text-white">전체보기</p>
 							</div>
 						)}
 					</div>
 
 
 					<div className="flex flex-col justify-start items-start w-full">
-						<div className="flex justify-start items-center w-full border border-[#b3b3b3]">
-							<div className="flex justify-center items-center w-40 h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">번호</p></div>
-							<div className="flex justify-center items-center w-[560px] h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">제목</p></div>
-							<div className="flex justify-center items-center w-80 h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">내용</p></div>
-							<div className="flex justify-center items-center w-[120px] h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">작성자</p></div>
-							<div className="flex justify-center items-center flex-grow h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">작성일</p></div>
-							<div className="flex justify-center items-center w-[120px] h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">조회수</p></div>
+						<div className="hidden md:flex justify-start items-center w-full border border-[#b3b3b3]">
+							<div className="flex justify-center items-center w-20 lg:w-40 h-12 py-2.5"><p className="text-sm lg:text-base font-semibold text-neutral-800">번호</p></div>
+							<div className="flex justify-center items-center flex-grow lg:w-[560px] h-12 py-2.5"><p className="text-sm lg:text-base font-semibold text-neutral-800">제목</p></div>
+							<div className="hidden lg:flex justify-center items-center w-80 h-12 py-2.5"><p className="text-base font-semibold text-neutral-800">내용</p></div>
+							<div className="flex justify-center items-center w-20 lg:w-[120px] h-12 py-2.5"><p className="text-sm lg:text-base font-semibold text-neutral-800">작성자</p></div>
+							<div className="flex justify-center items-center w-24 lg:flex-grow h-12 py-2.5"><p className="text-sm lg:text-base font-semibold text-neutral-800">작성일</p></div>
+							<div className="flex justify-center items-center w-16 lg:w-[120px] h-12 py-2.5"><p className="text-sm lg:text-base font-semibold text-neutral-800">조회수</p></div>
 						</div>
-						<div className="py-16 text-center text-lg text-gray-500 w-full">
+						<div className="py-16 text-center text-base md:text-lg text-gray-500 w-full">
 							{isSearching ? `"${currentSearchKeyword}" 검색 결과가 없습니다.` : '공지사항이 없습니다.'}
 						</div>
 					</div>
@@ -210,40 +210,40 @@ const NoticeListPage = () => {
 	}
 
 	return (
-		<div className="pt-24 flex flex-col items-center w-full">
-			<div className="flex flex-col items-center max-w-[1536px] mx-auto">
+		<div className="pt-24 flex flex-col items-center w-full px-4">
+			<div className="flex flex-col items-center max-w-[1536px] mx-auto w-full">
 				{/* 제목 섹션 */}
 				<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
-					<p className="text-[40px] font-medium text-[#333]"
+					<p className="text-[32px] md:text-[40px] font-medium text-[#333]"
 					   style={{fontFamily: 'esamanru, sans-serif'}}>
 						공지사항
 					</p>
 				</div>
 
 				{/* 검색 섹션 */}
-				<div className="flex justify-center items-center w-full gap-2 py-4 bg-[#f2f2f2] border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
-					<div className="flex justify-center items-center w-[480px] h-12 px-4 py-3 rounded-lg bg-white border border-[#d9d9d9]">
+				<div className="flex flex-col md:flex-row justify-center items-center w-full gap-2 py-4 bg-[#f2f2f2] border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
+					<div className="flex justify-center items-center w-full md:w-[480px] h-12 px-4 py-3 rounded-lg bg-white border border-[#d9d9d9]">
 						<input
 							type="text"
 							value={searchKeyword}
 							onChange={handleSearchInputChange}
 							onKeyPress={handleSearchKeyPress}
 							placeholder="검색어를 입력해 주세요"
-							className="w-full h-full text-base font-medium outline-none bg-transparent text-[#333] placeholder-[#a6a6a6]"
+							className="w-full h-full text-sm md:text-base font-medium outline-none bg-transparent text-[#333] placeholder-[#a6a6a6]"
 						/>
 					</div>
 					<div
 						onClick={handleSearch}
-						className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
+						className="flex justify-center items-center h-12 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
 					>
-						<p className="text-xl font-medium text-white">검색</p>
+						<p className="text-lg md:text-xl font-medium text-white">검색</p>
 					</div>
 					{isSearching && (
 						<div
 							onClick={handleSearchReset}
-							className="flex justify-start items-center h-12 gap-28 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
+							className="flex justify-center items-center h-12 px-6 py-3 rounded-lg bg-[#4ab3bc] cursor-pointer"
 						>
-							<p className="text-xl font-medium text-white">전체보기</p>
+							<p className="text-lg md:text-xl font-medium text-white">전체보기</p>
 						</div>
 					)}
 				</div>
@@ -251,24 +251,25 @@ const NoticeListPage = () => {
 
 				{/* 공지사항 목록 헤더 */}
 				<div className="flex flex-col justify-start items-start w-full">
-					<div className="flex justify-start items-center w-full border border-[#b3b3b3]">
-						<div className="flex justify-center items-center w-40 h-12 py-2.5">
-							<p className="text-base font-semibold text-neutral-800">번호</p>
+					{/* 데스크톱 테이블 헤더 */}
+					<div className="hidden md:flex justify-start items-center w-full border border-[#b3b3b3]">
+						<div className="flex justify-center items-center w-20 lg:w-40 h-12 py-2.5">
+							<p className="text-sm lg:text-base font-semibold text-neutral-800">번호</p>
 						</div>
-						<div className="flex justify-center items-center w-[560px] h-12 py-2.5">
-							<p className="text-base font-semibold text-neutral-800">제목</p>
+						<div className="flex justify-center items-center flex-grow lg:w-[560px] h-12 py-2.5">
+							<p className="text-sm lg:text-base font-semibold text-neutral-800">제목</p>
 						</div>
-						<div className="flex justify-center items-center w-80 h-12 py-2.5">
+						<div className="hidden lg:flex justify-center items-center w-80 h-12 py-2.5">
 							<p className="text-base font-semibold text-neutral-800">내용</p>
 						</div>
-						<div className="flex justify-center items-center w-[120px] h-12 py-2.5">
-							<p className="text-base font-semibold text-neutral-800">작성자</p>
+						<div className="flex justify-center items-center w-20 lg:w-[120px] h-12 py-2.5">
+							<p className="text-sm lg:text-base font-semibold text-neutral-800">작성자</p>
 						</div>
-						<div className="flex justify-center items-center flex-grow h-12 py-2.5">
-							<p className="text-base font-semibold text-neutral-800">작성일</p>
+						<div className="flex justify-center items-center w-24 lg:flex-grow h-12 py-2.5">
+							<p className="text-sm lg:text-base font-semibold text-neutral-800">작성일</p>
 						</div>
-						<div className="flex justify-center items-center w-[120px] h-12 py-2.5">
-							<p className="text-base font-semibold text-neutral-800">조회수</p>
+						<div className="flex justify-center items-center w-16 lg:w-[120px] h-12 py-2.5">
+							<p className="text-sm lg:text-base font-semibold text-neutral-800">조회수</p>
 						</div>
 					</div>
 
@@ -278,31 +279,51 @@ const NoticeListPage = () => {
 							<Link
 								key={notice.id}
 								to={`/notice/${notice.id}`}
-								className="flex justify-start items-center w-full h-[62px] border-t-0 border-r-0 border-b border-l-0 border-[#d9d9d9] hover:bg-gray-50 transition-colors cursor-pointer"
+								className="block w-full border-b border-[#d9d9d9] hover:bg-gray-50 transition-colors cursor-pointer"
 							>
-								<div className="flex justify-center items-center w-40 py-3">
-									<p className="text-base font-medium text-neutral-800">{notice.id}</p>
+								{/* 데스크톱 테이블 행 */}
+								<div className="hidden md:flex justify-start items-center w-full h-[62px]">
+									<div className="flex justify-center items-center w-20 lg:w-40 py-3">
+										<p className="text-sm lg:text-base font-medium text-neutral-800">{notice.id}</p>
+									</div>
+									<div className="flex justify-start items-center flex-grow lg:w-[560px] px-4 py-3">
+										<p className="w-full text-sm lg:text-base font-medium text-neutral-800 truncate">
+											{notice.title}
+										</p>
+									</div>
+									<div className="hidden lg:flex justify-start items-center w-80 px-4 py-3">
+										<p className="w-full text-base font-medium text-neutral-800 truncate">
+											{notice.content.replace(/<[^>]*>/g, '')}
+										</p>
+									</div>
+									<div className="flex justify-center items-center w-20 lg:w-[120px] py-3">
+										<p className="text-sm lg:text-base font-medium text-neutral-800">{notice.author}</p>
+									</div>
+									<div className="flex justify-center items-center w-24 lg:flex-grow py-3">
+										<p className="text-sm lg:text-base font-medium text-neutral-800">{notice.createdAt}</p>
+									</div>
+									<div className="flex justify-center items-center w-16 lg:w-[120px] py-3">
+										<p className="text-sm lg:text-base font-medium text-neutral-800">{notice.viewCount}</p>
+									</div>
 								</div>
-								{/* 제목: truncate 클래스 적용 */}
-								<div className="flex justify-start items-center w-[560px] px-4 py-3">
-									<p className="w-full text-base font-medium text-neutral-800 truncate">
-										{notice.title}
-									</p>
-								</div>
-								{/* 💡 내용: HTML 태그를 제거하고 첫 줄만 표시 */}
-								<div className="flex justify-start items-center w-80 px-4 py-3">
-									<p className="w-full text-base font-medium text-neutral-800 truncate">
+								{/* 모바일 카드 형태 */}
+								<div className="md:hidden p-4 space-y-2">
+									<div className="flex justify-between items-start">
+										<h3 className="text-base font-semibold text-neutral-800 flex-1 mr-2">
+											{notice.title}
+										</h3>
+										<span className="text-sm text-neutral-500 whitespace-nowrap">#{notice.id}</span>
+									</div>
+									<p className="text-sm text-neutral-600 line-clamp-2">
 										{notice.content.replace(/<[^>]*>/g, '')}
 									</p>
-								</div>
-								<div className="flex justify-center items-center w-[120px] py-3">
-									<p className="text-base font-medium text-neutral-800">{notice.author}</p>
-								</div>
-								<div className="flex justify-center items-center flex-grow py-3">
-									<p className="text-base font-medium text-neutral-800">{notice.createdAt}</p>
-								</div>
-								<div className="flex justify-center items-center w-[120px] py-3">
-									<p className="text-base font-medium text-neutral-800">{notice.viewCount}</p>
+									<div className="flex justify-between text-xs text-neutral-500">
+										<span>{notice.author}</span>
+										<div className="flex gap-4">
+											<span>{notice.createdAt}</span>
+											<span>조회 {notice.viewCount}</span>
+										</div>
+									</div>
 								</div>
 							</Link>
 						))

@@ -1,12 +1,12 @@
 import React from 'react';
 import { CheckIcon, Button } from '../../ui/index.jsx';
-import faceImg from '../../../assets/images/features/face-recognition.png';
+import faceImg from '../../../assets/images/features/face-recognition.webp';
 
 const ProgramFeaturesSection = () => {
 	return (
-		<div className="w-full relative bg-white pt-10 sm:pt-16 lg:pt-20 pb-20 sm:pb-30 lg:pb-40 overflow-x-hidden">
+		<div className="w-full relative bg-white pt-10 sm:pt-16 lg:pt-20 pb-20 sm:pb-30 lg:pb-40 overflow-hidden">
 			{/* 전체 컨텐츠 컨테이너 */}
-			<div className="flex flex-col justify-start items-center w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-48 gap-8 sm:gap-12 lg:gap-16 z-10">
+			<div className="flex flex-col justify-start items-center w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-48 gap-8 sm:gap-12 lg:gap-16 relative z-20">
 				{/* 상단 텍스트 섹션 */}
 				<div className="flex flex-col justify-start items-start w-full gap-2 border-l-4 border-[#e6e6e6]"
 				     style={{fontFamily: 'esamanru, sans-serif'}}>
@@ -26,7 +26,7 @@ const ProgramFeaturesSection = () => {
 				{/* 메인 컨텐츠 (좌: 기능, 우: 이미지) */}
 				<div className="flex flex-col lg:flex-row justify-between items-center w-full gap-8 sm:gap-12 lg:gap-16">
 					{/* 왼쪽 기능 목록 */}
-					<div className="flex flex-col justify-start items-start gap-4 sm:gap-6 lg:gap-8 flex-shrink-0">
+					<div className="flex flex-col justify-start items-start gap-4 sm:gap-6 lg:gap-8 flex-shrink-0 relative z-20">
 						<Button variant="primary" size="large" className="gap-2.5 text-[20px] sm:text-[28px] lg:text-[32px] xl:text-[42px]">
 							<CheckIcon />
 							모바일 등록으로 간편하게
@@ -53,7 +53,7 @@ const ProgramFeaturesSection = () => {
 					</div>
 
 					{/* 오른쪽 이미지 영역 */}
-					<div className="w-full lg:w-1/2 flex justify-center lg:justify-end items-center mt-10 lg:mt-0">
+					<div className="w-full lg:w-1/2 flex justify-center lg:justify-end items-center mt-10 lg:mt-0 relative z-0">
 						<img
 							src={faceImg}
 							alt="바디스위치 안면인식 시스템"
@@ -69,7 +69,7 @@ const ProgramFeaturesSection = () => {
 				viewBox="0 0 1920 579"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				className="absolute -bottom-35 left-0 right-0 z-0"
+				className="absolute -bottom-20 sm:-bottom-32 lg:-bottom-40 left-0 right-0 z-10 w-full"
 				preserveAspectRatio="none"
 			>
 				<path

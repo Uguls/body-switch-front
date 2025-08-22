@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useMemo, useCallback} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import apiClient from "../../../api/apiClient.js";
 import { AdminPageLayout, PageHeader, SuccessModal } from "../../../components/admin/index.js";
+import { compressImagesInHTML, createCompressedImageHandler } from '../../../utils/imageCompression.js';
+import '/src/styles/ReactQuill.css'
 
 const NoticeEditPage = () => {
 	const { id } = useParams(); // URL에서 공지사항 ID를 가져옵니다.
@@ -33,22 +35,27 @@ const NoticeEditPage = () => {
 		fetchNoticeData();
 	}, [id]); // id가 변경될 때마다 데이터를 다시 불러옵니다.
 
-	const modules = {
-		toolbar: [
-			[{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
-			['bold', 'italic', 'underline', 'strike', 'blockquote'],
-			[{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-			['link', 'image'],
-			['clean']
-		],
-	};
+	const modules = useMemo(() => ({
+		toolbar: {
+			container: [
+				[{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+				['bold', 'italic', 'underline', 'strike', 'blockquote'],
+				[{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+				['link', 'image'],
+				['clean']
+			],
+			handlers: {
+				image: createCompressedImageHandler(1200, 1200, 0.8)
+			}
+		},
+	}), []);
 
 	const customQuillStyle = `
     .ql-editor { color: #000; min-height: 450px; }
     .ql-snow .ql-picker-label { color: #000; }
   `;
 
-	const handleSubmit = async () => {
+	const handleSubmit =  useCallback(async () => {
 		if (!title.trim()) {
 			alert('제목을 입력해주세요.');
 			return;
@@ -58,7 +65,10 @@ const NoticeEditPage = () => {
 			return;
 		}
 
-		const updatedNoticeData = { title, content };
+		// 이미지 압축 적용
+		const compressedContent = await compressImagesInHTML(content, 1200, 1200, 0.8);
+		
+		const updatedNoticeData = { title, content: compressedContent };
 
 		try {
 			const response = await apiClient.put(`/notice/${id}`, updatedNoticeData);
@@ -68,7 +78,7 @@ const NoticeEditPage = () => {
 		} catch {
 			alert('공지사항 수정 중 오류가 발생했습니다.');
 		}
-	};
+	}, [title, content]);
 
 	const handleModalClose = () => {
 		setShowSuccessModal(false);

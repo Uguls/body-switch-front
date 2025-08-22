@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom';
 
 const CtaSection = () => {
 	return (
-		// 1. 반응형을 위해 고정 너비(w-[1920px])를 w-full로 바꾸고, 패딩(px)을 화면 크기에 따라 조절하도록 수정합니다.
-		<div className="flex flex-col justify-center items-center w-full gap-20 px-8 sm:px-16 md:px-48 pt-10 my-55">
+		<div className="flex flex-col justify-center items-center w-full gap-10 px-8 sm:px-16 md:px-48 pt-3 my-55">
 			<div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative gap-8">
-				{/* 2. 화면 크기에 따라 폰트 크기가 바뀌도록 수정합니다. (text-5xl -> md:text-7xl) */}
 				<p className="flex-grow-0 flex-shrink-0 text-5xl md:text-7xl text-center text-[#333]"
 				   style={{fontFamily: 'InkLipquid, sans-serif'}}>
 					더 쉬운 관리, 더 큰 성공
@@ -18,8 +16,6 @@ const CtaSection = () => {
 						viewBox="0 0 512 56"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
-						// 3. SVG 크기도 화면에 따라 조절되도록 w-full, max-w-[512px] 등을 사용할 수 있습니다.
-						// 여기서는 원본 비율을 유지하도록 간단히 수정합니다.
 						className="w-full max-w-[512px] h-auto"
 						preserveAspectRatio="xMidYMid meet"
 					>
@@ -41,7 +37,7 @@ const CtaSection = () => {
 				</div>
 			</div>
 			<Link 
-				to="/introduction" 
+				to="/inquiry"
 				className="flex justify-center items-center w-full max-w-lg cursor-pointer relative gap-2.5 p-6 rounded-[100px] bg-[#274e5e] hover:bg-[#3a6a82] transition-colors"
 			>
 				<p className="flex-grow-0 flex-shrink-0 text-4xl md:text-5xl font-semibold text-left text-white">도입문의</p>

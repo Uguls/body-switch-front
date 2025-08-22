@@ -3,7 +3,6 @@ import React from 'react';
 import { PricingPlanCard } from '../../ui/index.jsx';
 
 const PricingPlansSection = () => {
-	// 데이터를 배열로 관리하면 렌더링이 간편해집니다.
 	const plans = [
 		{
 			title: '베이직',
@@ -37,7 +36,7 @@ const PricingPlansSection = () => {
 	];
 
 	return (
-		<div className="flex flex-col justify-start items-start w-full gap-16 px-4 md:px-48 py-20 md:py-40 mt-30 bg-[#f4f5f7]">
+		<div className="flex flex-col justify-start items-start w-full gap-16 px-4 md:px-48 py-20 md:py-40 bg-[#f4f5f7]">
 			{/* 섹션 제목 */}
 			<div className="flex flex-col justify-start items-start w-full gap-2 border-l-4 border-[#e6e6e6]"
 			     style={{fontFamily: 'esamanru, sans-serif'}}>

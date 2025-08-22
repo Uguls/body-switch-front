@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, {useMemo, useState, useCallback} from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import apiClient from "../../../api/apiClient.js";
 import { AdminPageLayout, PageHeader, SuccessModal } from "../../../components/admin/index.js";
+import { compressImagesInHTML, createCompressedImageHandler } from '../../../utils/imageCompression.js';
+import '/src/styles/ReactQuill.css'
 
 const NoticeCreatePage = () => {
 	const navigate = useNavigate();
@@ -16,33 +18,25 @@ const NoticeCreatePage = () => {
 	/**
 	 * React Quill 에디터의 툴바 옵션 설정
 	 */
-	const modules = {
-		toolbar: [
-			[{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
-			['bold', 'italic', 'underline', 'strike', 'blockquote'],
-			[{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-			['link', 'image'],
-			['clean']
-		],
-	};
-
-	/**
-	 * React Quill 에디터의 기본 텍스트 색상을 검정색으로 지정하기 위한 커스텀 스타일
-	 */
-	const customQuillStyle = `
-    .ql-editor {
-      color: #000;
-      min-height: 450px; /* 에디터 최소 높이 지정 */
-    }
-    .ql-snow .ql-picker-label {
-        color: #000;
-    }
-  `;
+	const modules = useMemo(() => ({
+		toolbar: {
+			container: [
+				[{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+				['bold', 'italic', 'underline', 'strike', 'blockquote'],
+				[{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+				['link', 'image'],
+				['clean']
+			],
+			handlers: {
+				image: createCompressedImageHandler(1200, 1200, 0.8)
+			}
+		},
+	}), []);
 
 	/**
 	 * '작성완료' 버튼 클릭 시 실행될 핸들러
 	 */
-	const handleSubmit = async () => {
+	const handleSubmit = useCallback(async () => {
 		if (!title.trim()) {
 			alert('제목을 입력해주세요.');
 			return;
@@ -52,10 +46,11 @@ const NoticeCreatePage = () => {
 			return;
 		}
 
-		// 전송 데이터에서 기간 및 작성자 관련 필드 제거
+		const compressedContent = await compressImagesInHTML(content, 1200, 1200, 0.8);
+
 		const noticeData = {
 			title,
-			content,
+			content: compressedContent,
 		};
 
 		try {
@@ -66,7 +61,7 @@ const NoticeCreatePage = () => {
 		} catch {
 			alert('공지사항 등록 중 오류가 발생했습니다.');
 		}
-	};
+	}, [title, content]);
 
 	const handleModalClose = () => {
 		setShowSuccessModal(false);
@@ -75,8 +70,6 @@ const NoticeCreatePage = () => {
 
 	return (
 		<>
-			<style>{customQuillStyle}</style>
-
 			<div className="flex flex-col items-center w-full min-h-screen p-4 sm:p-8 bg-gray-50 font-sans">
 				{/* 페이지 타이틀 */}
 				<div className="flex justify-center items-center w-full max-w-6xl relative py-8 border-b-2 border-[#e6e6e6]"
@@ -112,8 +105,6 @@ const NoticeCreatePage = () => {
 						/>
 					</div>
 
-					{/* 게시 기간 및 작성자 섹션 제거됨 */}
-
 					{/* 작성하기 영역 (React Quill) */}
 					<div className="flex flex-col self-stretch gap-3">
 						<p className="text-2xl font-semibold text-left text-black">작성하기</p>
@@ -123,7 +114,6 @@ const NoticeCreatePage = () => {
 								value={content}
 								onChange={setContent}
 								modules={modules}
-								// style 태그로 높이를 제어하므로 인라인 스타일 제거
 							/>
 						</div>
 					</div>

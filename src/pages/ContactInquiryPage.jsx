@@ -157,22 +157,27 @@ const InquiryPage = () => {
 					viewBox="0 0 1920 827"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
-					preserveAspectRatio="xMidYMin slice"
+					preserveAspectRatio="none"
+					className="w-full block"
+					style={{ 
+						height: 'clamp(350px, 50vh, 500px)',
+						maxHeight: '60vh'
+					}}
 				>
 					<path
 						d="M0 0L1920 0L1920 827C1617.28 730.544 1294.73 678.485 960.001 678.484C625.276 678.484 302.722 730.544 0 827L0 0Z"
 						fill="#108389"
 					></path>
 				</svg>
-				<div className="absolute inset-0 flex items-center justify-center pb-20 md:pb-32 lg:pb-48">
-					<p className="text-4xl md:text-5xl font-bold text-white text-center px-4">
-						“ 바디스위치의 궁금한 점을 보내주세요 ”
+				<div className="absolute inset-0 flex items-center justify-center px-4">
+					<p className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center">
+						" 바디스위치의 궁금한 점을 보내주세요 "
 					</p>
 				</div>
 			</div>
 
 			{/* Main form section */}
-			<div className="w-full max-w-4xl mx-auto relative z-10 -mt-48 md:-mt-56 lg:-mt-64 px-4">
+			<div className="w-full max-w-4xl mx-auto relative z-10 -mt-24 sm:-mt-32 md:-mt-40 px-4">
 				{/* Top info area (InquiryGuide component) */}
 				<InquiryGuide />
 

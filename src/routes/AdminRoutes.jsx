@@ -14,13 +14,14 @@ import {
 	EventEditPage
 } from '../pages/admin/index.js';
 import AdminHeader from "../components/layout/AdminHeader.jsx";
+import PrivateRoute from "../components/common/PrivateRoute.jsx";
 
 const AdminRoutes = () => {
 	const location = useLocation();
 
 
-	// 로그인 페이지 경로를 명확하게 수정
-	const isLoginPage = location.pathname === '/bodyswitch-admin/';
+	// 로그인 페이지 경로 체크 (슬래시 유무 관계없이)
+	const isLoginPage = location.pathname === '/bodyswitch-admin/' || location.pathname === '/bodyswitch-admin';
 
 	return (
 		<div className="min-h-screen bg-white">
@@ -29,19 +30,59 @@ const AdminRoutes = () => {
 			<main className={!isLoginPage ? "pt-24" : ""}>
 				<Routes>
 					<Route path="/" element={<LoginPage />} />
-					{/* 문의 사항 */}
-					<Route path="/inquiries" element={<InquiriesListPage />} />
-					<Route path="/inquiries/:id" element={<InquiryDetailPage />} />
+					{/* 보호된 관리자 라우트 */}
+					<Route path="/inquiries" element={
+						<PrivateRoute>
+							<InquiriesListPage />
+						</PrivateRoute>
+					} />
+					<Route path="/inquiries/:id" element={
+						<PrivateRoute>
+							<InquiryDetailPage />
+						</PrivateRoute>
+					} />
 					{/* 공지사항 */}
-					<Route path="/notices" element={<NoticesListPage />} />
-					<Route path="/notice/create" element={<NoticeCreatePage />} />
-					<Route path="/notice/:id" element={<NoticeDetailPage />} />
-					<Route path="/notice/edit/:id" element={<NoticeEditPage />} />
+					<Route path="/notices" element={
+						<PrivateRoute>
+							<NoticesListPage />
+						</PrivateRoute>
+					} />
+					<Route path="/notice/create" element={
+						<PrivateRoute>
+							<NoticeCreatePage />
+						</PrivateRoute>
+					} />
+					<Route path="/notice/:id" element={
+						<PrivateRoute>
+							<NoticeDetailPage />
+						</PrivateRoute>
+					} />
+					<Route path="/notice/edit/:id" element={
+						<PrivateRoute>
+							<NoticeEditPage />
+						</PrivateRoute>
+					} />
 					{/* 이벤트 */}
-					<Route path="/events" element={<EventsListPage />} />
-					<Route path="/event/create" element={<EventCreatePage />} />
-					<Route path="/event/:id" element={<EventDetailPage />} />
-					<Route path="/event/edit/:id" element={<EventEditPage />} />
+					<Route path="/events" element={
+						<PrivateRoute>
+							<EventsListPage />
+						</PrivateRoute>
+					} />
+					<Route path="/event/create" element={
+						<PrivateRoute>
+							<EventCreatePage />
+						</PrivateRoute>
+					} />
+					<Route path="/event/:id" element={
+						<PrivateRoute>
+							<EventDetailPage />
+						</PrivateRoute>
+					} />
+					<Route path="/event/edit/:id" element={
+						<PrivateRoute>
+							<EventEditPage />
+						</PrivateRoute>
+					} />
 				</Routes>
 			</main>
 		</div>

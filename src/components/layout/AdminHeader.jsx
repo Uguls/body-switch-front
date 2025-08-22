@@ -1,21 +1,19 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { BrandLogo } from '../ui/index.jsx';
-import { logout } from '../../api/api.js';
+import { useAuth } from '../../contexts/AuthContext.jsx';
 
 const AdminHeader = () => {
 	const location = useLocation();
-	const navigate = useNavigate();
+	const { logout, user } = useAuth();
 
 	// 로그아웃 처리 함수
 	const handleLogout = async () => {
 		try {
-			await logout(); // api.js의 logout 함수 호출
-			alert('성공적으로 로그아웃되었습니다.');
-			navigate('/bodyswitch-admin/'); // 로그아웃 후 로그인 페이지로 이동
+			await logout();
 		} catch (error) {
 			console.error('로그아웃 실패:', error);
-			alert('로그아웃 처리 중 오류가 발생했습니다.');
+			// logout 함수에서 이미 처리하므로 별도 alert 불필요
 		}
 	};
 

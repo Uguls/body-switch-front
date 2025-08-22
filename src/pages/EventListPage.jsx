@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { OptimizedImage } from "../components/ui/Image/index.jsx";
+import { EventListSkeleton } from "../components/ui/Skeleton/index.jsx";
 
 const EventListPage = () => {
 	const [events, setEvents] = useState([]);
@@ -105,8 +107,23 @@ const EventListPage = () => {
 
 	if (loading) {
 		return (
-			<div className="pt-24 flex justify-center items-center h-screen text-2xl font-semibold">
-				로딩 중...
+			<div className="pt-24 flex flex-col items-center w-full px-4">
+				<div className="flex flex-col items-center max-w-[1536px] mx-auto w-full">
+					{/* 제목 섹션 */}
+					<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
+						<p className="text-[32px] md:text-[40px] font-medium text-center text-[#333]"
+						   style={{fontFamily: 'esamanru, sans-serif'}}>
+							이벤트
+						</p>
+					</div>
+					{/* 탭 메뉴 스켈레톤 */}
+					<div className="flex justify-center items-center gap-px w-full max-w-[1200px]">
+						<div className="flex-1 md:w-80 h-12 bg-gray-200 rounded animate-pulse"></div>
+						<div className="flex-1 md:w-80 h-12 bg-gray-200 rounded animate-pulse ml-1"></div>
+					</div>
+					{/* 로딩 스켈레톤 */}
+					<EventListSkeleton count={5} />
+				</div>
 			</div>
 		);
 	}
@@ -120,25 +137,25 @@ const EventListPage = () => {
 	}
 
 	return (
-		<div className="pt-24 flex flex-col items-center w-full">
-			<div className="flex flex-col items-center max-w-[1536px] mx-auto">
+		<div className="pt-24 flex flex-col items-center w-full px-4">
+			<div className="flex flex-col items-center max-w-[1536px] mx-auto w-full">
 				{/* 제목 섹션 */}
 				<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-t-0 border-r-0 border-b-2 border-l-0 border-[#e6e6e6]">
-					<p className="flex-grow-0 flex-shrink-0 text-[40px] font-medium text-left text-[#333]"
+					<p className="text-[32px] md:text-[40px] font-medium text-center text-[#333]"
 					   style={{fontFamily: 'esamanru, sans-serif'}}>
 						이벤트
 					</p>
 				</div>
 
 				{/* 탭 메뉴 */}
-				<div className="flex justify-center items-center gap-px w-[1200px]">
+				<div className="flex justify-center items-center gap-px w-full max-w-[1200px]">
 					<div
-						className={`flex flex-col justify-center items-center w-80 relative gap-2.5 px-3 py-2 cursor-pointer transition-colors duration-300 ${
+						className={`flex flex-col justify-center items-center flex-1 md:w-80 relative gap-2.5 px-3 py-2 cursor-pointer transition-colors duration-300 ${
 							activeTab === "IN_PROGRESS" ? "" : ""
 						}`}
 						onClick={() => handleTabChange("IN_PROGRESS")}
 					>
-						<p className={`flex-grow-0 flex-shrink-0 text-[32px] font-semibold text-left transition-colors duration-300 ${
+						<p className={`text-[24px] md:text-[32px] font-semibold text-center transition-colors duration-300 ${
 							activeTab === "IN_PROGRESS" ? "text-[#4ab3bc]" : "text-[#999]"
 						}`}>
 							진행중 이벤트
@@ -148,12 +165,12 @@ const EventListPage = () => {
 						}`}></div>
 					</div>
 					<div
-						className={`flex flex-col justify-center items-center w-80 relative gap-2.5 px-3 py-2 cursor-pointer transition-colors duration-300 ${
+						className={`flex flex-col justify-center items-center flex-1 md:w-80 relative gap-2.5 px-3 py-2 cursor-pointer transition-colors duration-300 ${
 							activeTab === "EXPIRED" ? "" : ""
 						}`}
 						onClick={() => handleTabChange("EXPIRED")}
 					>
-						<p className={`flex-grow-0 flex-shrink-0 text-[32px] font-semibold text-left transition-colors duration-300 ${
+						<p className={`text-[24px] md:text-[32px] font-semibold text-center transition-colors duration-300 ${
 							activeTab === "EXPIRED" ? "text-[#4ab3bc]" : "text-[#999]"
 						}`}>
 							종료된 이벤트
@@ -165,34 +182,37 @@ const EventListPage = () => {
 				</div>
 
 				{/* 이벤트 목록 */}
-				<div className="flex flex-col justify-start items-start w-[1200px] gap-12 mt-12">
+				<div className="flex flex-col justify-start items-start w-full max-w-[1200px] gap-6 md:gap-12 mt-8 md:mt-12">
 					{Array.isArray(events) && events.length > 0 ? (
 						events.map((event) => (
 							<Link
 								key={event.id}
 								to={`/event/${event.id}`}
-								className="flex justify-start items-center w-full h-64 relative rounded-2xl bg-white shadow-[0px_0px_12px_0_rgba(0,0,0,0.16)] overflow-hidden"
+								className="flex flex-col md:flex-row justify-start items-center w-full min-h-48 md:h-64 relative rounded-2xl bg-white shadow-[0px_0px_12px_0_rgba(0,0,0,0.16)] overflow-hidden"
 							>
 								{/* 이미지 컨테이너 */}
-								<div className="flex-grow-0 flex-shrink-0 w-[30%] h-full relative overflow-hidden rounded-l-2xl transition-all duration-800 hover:w-[35%] bg-gray-100">
-									<img 
+								<div className="flex-grow-0 flex-shrink-0 w-full md:w-[30%] h-48 md:h-full relative overflow-hidden rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none transition-all duration-800 md:hover:w-[35%] bg-gray-100">
+									<OptimizedImage 
 										src={event.imageUrl} 
 										alt={event.title}
-										className="w-full h-full object-cover"
+										className="w-full h-full"
+										width={400}
+										height={256}
+										sizes="(max-width: 768px) 100vw, 30vw"
 									/>
 								</div>
 								{/* 텍스트 컨테이너 */}
-								<div className="flex flex-col justify-between items-start flex-grow p-6 transition-all duration-500 hover:flex-shrink">
-									<div className="flex flex-col justify-start items-start self-stretch gap-6">
-										<p className="flex-grow-0 flex-shrink-0 text-[32px] font-semibold text-left text-[#333]">
+								<div className="flex flex-col justify-between items-start flex-grow p-4 md:p-6 transition-all duration-500 md:hover:flex-shrink">
+									<div className="flex flex-col justify-start items-start self-stretch gap-3 md:gap-6">
+										<p className="text-[20px] md:text-[32px] font-semibold text-left text-[#333]">
 											{event.title}
 										</p>
-										<p className="flex-grow-0 flex-shrink-0 text-2xl font-medium text-left text-[#666]">
+										<p className="text-base md:text-2xl font-medium text-left text-[#666]">
 											{event.subTitle}
 										</p>
 									</div>
-									<div className="flex justify-center items-center relative gap-2.5">
-										<p className="flex-grow-0 flex-shrink-0 text-xl font-medium text-left text-[#b3b3b3]">
+									<div className="flex justify-start items-center relative gap-2.5 mt-3 md:mt-0">
+										<p className="text-sm md:text-xl font-medium text-left text-[#b3b3b3]">
 											{event.createdAt}
 										</p>
 									</div>
@@ -200,7 +220,7 @@ const EventListPage = () => {
 							</Link>
 						))
 					) : (
-						<div className="py-16 text-center text-lg text-gray-500 w-full">
+						<div className="py-16 text-center text-base md:text-lg text-gray-500 w-full">
 							등록된 이벤트가 없습니다.
 						</div>
 					)}
