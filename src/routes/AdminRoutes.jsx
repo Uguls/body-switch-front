@@ -11,7 +11,8 @@ import {
 	EventCreatePage,
 	EventsListPage,
 	EventDetailPage,
-	EventEditPage
+	EventEditPage,
+	AlimTalkListPage
 } from '../pages/admin/index.js';
 import AdminHeader from "../components/layout/AdminHeader.jsx";
 import PrivateRoute from "../components/common/PrivateRoute.jsx";
@@ -81,6 +82,12 @@ const AdminRoutes = () => {
 					<Route path="/event/edit/:id" element={
 						<PrivateRoute>
 							<EventEditPage />
+						</PrivateRoute>
+					} />
+					{/* 알림톡 */}
+					<Route path="/alimtalk" element={
+						<PrivateRoute>
+							<AlimTalkListPage />
 						</PrivateRoute>
 					} />
 				</Routes>

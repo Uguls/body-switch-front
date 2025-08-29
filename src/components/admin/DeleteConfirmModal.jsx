@@ -12,17 +12,25 @@ const DeleteConfirmModal = ({
 	onClose, 
 	onConfirm
 }) => {
-	if (!isOpen) return null;
-
 	const handleConfirm = () => {
 		onConfirm();
 		onClose();
 	};
 
 	return (
-		<div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50">
+		<div 
+			className={`fixed inset-0 z-[100] flex items-center justify-center transition-all duration-300 ease-out ${
+				isOpen 
+					? 'opacity-100 visible bg-black/50' 
+					: 'opacity-0 invisible bg-black/0'
+			}`}
+		>
 			<div
-				className="flex flex-col justify-start items-center gap-8 p-8 rounded-lg bg-white"
+				className={`flex flex-col justify-start items-center gap-8 p-8 rounded-lg bg-white transition-all duration-300 ease-out ${
+					isOpen 
+						? 'scale-100 opacity-100 translate-y-0' 
+						: 'scale-95 opacity-0 translate-y-4'
+				}`}
 				style={{ boxShadow: "-4px -4px 12px 0 rgba(0,0,0,0.08), 4px 4px 12px 0 rgba(0,0,0,0.08)" }}
 			>
 				<div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative gap-6">

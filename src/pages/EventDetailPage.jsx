@@ -70,7 +70,7 @@ const EventDetailPage = () => {
 				</div>
 
 				{/* 상세 정보 헤더 */}
-				<div className="flex flex-col justify-start items-center w-full max-w-[628px] relative gap-[9px] mt-8 md:mt-16">
+				<div className="flex flex-col justify-start items-center w-full relative gap-[9px] mt-8 md:mt-16">
 					<div className="flex flex-col md:flex-row justify-center items-center relative gap-2 md:gap-4">
 						<p className={`text-lg md:text-2xl font-semibold text-center ${
 							event.status === 'IN_PROGRESS' ? 'text-[#4ab3bc]' :
@@ -89,14 +89,23 @@ const EventDetailPage = () => {
 					<p className="w-full text-[28px] md:text-[40px] font-semibold text-center text-[#333] px-4">
 						{event.title}
 					</p>
+					<p className="w-full text-base md:text-2xl font-medium text-center text-[#666] px-4 mt-3">
+						{event.subTitle}
+					</p>
 				</div>
 
 				{/* 이벤트 이미지 및 상세 내용 */}
 				<div className="flex flex-col items-center w-full relative gap-8 md:gap-16 mt-8 md:mt-16">
 					<div className="max-w-[1200px] w-full px-4 text-center">
 						<div
-							className="text-sm md:text-base font-medium text-neutral-700 whitespace-pre-wrap"
-							style={{ fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger" }}
+							className="text-sm md:text-base font-medium text-neutral-700 whitespace-pre-wrap break-words overflow-wrap-anywhere"
+							style={{ 
+								fontFamily: 'Pretendard-Regular, sans-serif', 
+								fontSize: "larger",
+								wordBreak: 'break-word',
+								overflowWrap: 'anywhere',
+								hyphens: 'auto'
+							}}
 							dangerouslySetInnerHTML={renderHTML(event.content)}
 						/>
 					</div>
@@ -120,7 +129,7 @@ const EventDetailPage = () => {
 									sizes="(max-width: 768px) 100vw, 30vw"
 								/>
 							</div>
-							<div className="flex flex-col justify-between items-start flex-grow p-4 md:p-6 transition-all duration-500 md:hover:flex-shrink">
+							<div className="flex flex-col justify-between items-start flex-grow p-4 md:p-6 transition-all duration-500 md:hover:flex-shrink h-full">
 								<div className="flex flex-col justify-start items-start self-stretch gap-3 md:gap-6">
 									<p className="text-[20px] md:text-[32px] font-semibold text-left text-[#333]">
 										{event.previousEvent.title}
@@ -130,9 +139,11 @@ const EventDetailPage = () => {
 										{event.previousEvent.subTitle.replace(/<[^>]*>/g, '')}
 									</p>
 								</div>
-								<p className="text-sm md:text-xl font-medium text-left text-[#b3b3b3] mt-3 md:mt-0">
-									{event.previousEvent.createdAt}
-								</p>
+								<div className="flex justify-start items-center relative gap-2.5">
+									<p className="text-xs md:text-sm font-medium text-left text-[#ccc]">
+										{event.previousEvent.startDate}
+									</p>
+								</div>
 							</div>
 						</Link>
 					</div>

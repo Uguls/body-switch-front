@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card.jsx';
+import recommendedCorner from '../../../assets/svgs/recommended-corner.svg';
 
 const PricingCard = ({
 	title,
@@ -20,11 +21,9 @@ const PricingCard = ({
 			style={{ filter: 'drop-shadow(0px 0px 20px rgba(0,0,0,0.2))' }}
 		>
 			{isRecommended && (
-				<div className="absolute top-0 right-0 w-24 h-24">
-					<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M96 0L0 0L96 96V0Z" fill="#EEB412" />
-					</svg>
-					<p className="absolute top-[28px] right-[8px] text-xl font-bold text-white transform rotate-45">
+				<div className="absolute bottom-0 right-0 w-24 h-24">
+					<img src={recommendedCorner} alt="" width="96" height="96" />
+					<p className="absolute bottom-[32px] right-[32px] text-2xl font-black text-white transform -rotate-45 -translate-x-1/2 -translate-y-1/2">
 						추천
 					</p>
 				</div>

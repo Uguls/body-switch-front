@@ -68,7 +68,7 @@ const NoticeDetailPage = () => {
 				<div className="flex flex-col justify-start items-center w-full max-w-[628px] relative gap-[9px] mt-8 md:mt-16">
 					<div className="flex flex-col md:flex-row justify-center items-center relative gap-2 md:gap-4">
 						<p className="text-lg md:text-2xl font-semibold text-center text-[#4ab3bc]"
-						   style={{fontFamily: 'esamanru, sans-serif'}}>
+						   style={{fontFamily: 'Pretendard-Regular, sans-serif'}}>
 							공지사항
 						</p>
 						<div className="hidden md:block w-0.5 h-5 rounded-[999px] bg-[#e6e6e6]"></div>

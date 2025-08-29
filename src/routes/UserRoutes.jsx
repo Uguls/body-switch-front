@@ -7,7 +7,6 @@ import MemberAppInfoPage from "../pages/MemberAppInfoPage.jsx";
 import EventListPage from "../pages/EventListPage.jsx";
 import NoticePage from "../pages/NoticeListPage.jsx";
 import CompanyAboutPage from "../pages/CompanyAboutPage.jsx";
-import ServiceIntroPage from "../pages/ServiceIntroPage.jsx";
 import ContactInquiryPage from "../pages/ContactInquiryPage.jsx";
 import NoticeDetailPage from "../pages/NoticeDetailPage.jsx";
 import EventDetailPage from "../pages/EventDetailPage.jsx";
@@ -63,7 +62,6 @@ const UserRoutes = () => {
 					<Route path="/notice" element={<NoticePage />} />
 					<Route path="/notice/:id" element={<NoticeDetailPage />} />
 					<Route path="/about" element={<CompanyAboutPage />} />
-					<Route path="/introduction" element={<ServiceIntroPage />} />
 					<Route path="/inquiry" element={<ContactInquiryPage />} />
 				</Routes>
 			</div>

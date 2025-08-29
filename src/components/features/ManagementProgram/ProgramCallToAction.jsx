@@ -30,8 +30,8 @@ const CtaSection = () => {
 						<path d="M409.543 28.0527C409.543 12.1195 420.887 0.557732 436.753 0.557732C448.498 0.557732 457.692 6.99431 461.353 17.3878H458.763C455.216 8.4188 447.132 3.01481 436.761 3.01481C422.42 3.01481 412.086 13.4686 412.086 28.0527C412.086 42.6369 422.367 52.9776 436.761 52.9776C447.419 52.9776 455.691 47.2646 459.224 37.67H461.76C458.16 48.7117 448.793 55.4347 436.761 55.4347C420.842 55.4347 409.55 43.9935 409.55 28.0603L409.543 28.0527Z" fill="#4AB3BC"></path>
 						<path d="M512 1.34156V54.6508H509.501V28.0527H475.354V54.6508H472.856V1.34156H475.354V25.6333H509.501V1.34156H512Z" fill="#4AB3BC"></path>
 					</svg>
-					<p className="flex-grow-0 flex-shrink-0 text-3xl md:text-[40px] font-light text-left text-[#4d4d4d]"
-					   style={{fontFamily: 'esamanru, sans-serif'}}>
+					<p className="flex-grow-0 flex-shrink-0 text-xl md:text-[40px] font-light text-left text-[#4d4d4d]"
+					   style={{fontFamily: 'esamanru-light, sans-serif'}}>
 						가 함께하겠습니다.
 					</p>
 				</div>

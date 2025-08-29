@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BrandLogo } from '../ui/index.jsx';
+import menuIcon from '../../assets/svgs/menu-icon.svg';
+import closeIcon from '../../assets/svgs/close-icon.svg';
 
 
 // 햄버거 메뉴 아이콘 SVG
 const MenuIcon = ({ className }) => (
-	<svg className={className} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-		<line x1="3" y1="12" x2="21" y2="12"></line>
-		<line x1="3" y1="6" x2="21" y2="6"></line>
-		<line x1="3" y1="18" x2="21" y2="18"></line>
-	</svg>
+	<img src={menuIcon} alt="메뉴" className={className} />
 );
 
 // 닫기 아이콘 SVG
 const CloseIcon = ({ className }) => (
-	<svg className={className} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-		<line x1="18" y1="6" x2="6" y2="18"></line>
-		<line x1="6" y1="6" x2="18" y2="18"></line>
-	</svg>
+	<img src={closeIcon} alt="닫기" className={className} />
 );
 
 const AppHeader = () => {
@@ -49,7 +44,7 @@ const AppHeader = () => {
 
 	return (
 		<>
-			<header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-48 py-4 md:py-6 bg-white/60 backdrop-blur-[20px] border-b border-gray-200/50">
+			<header className="fixed top-0 left-0 right-0 z-999 flex items-center justify-between w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-48 py-4 md:py-6 bg-white/60 backdrop-blur-[20px] border-b border-gray-200/50">
 				<Link to="/" onClick={() => setIsMenuOpen(false)}>
 					<BrandLogo size="medium" />
 				</Link>
@@ -57,12 +52,13 @@ const AppHeader = () => {
 				{/* 데스크탑 네비게이션 메뉴 */}
 				<nav className="hidden md:flex items-center gap-4 lg:gap-8 xl:gap-16">
 					{navLinks.map((link) => {
-						const isActive = location.pathname === link.path;
+						const isActive = link.path === '/' ? location.pathname === link.path : location.pathname.startsWith(link.path);
 						return (
 							<Link
 								key={link.path}
 								to={link.path}
 								className={`py-3 border-b-2 transition-colors duration-300 ${isActive ? 'border-[#4ab3bc]' : 'border-transparent hover:border-[#4ab3bc]/50'}`}
+								style={{fontFamily: 'Pretendard-Regular, sans-serif'}}
 							>
 								<p className={`text-sm lg:text-base xl:text-lg font-bold transition-colors duration-300 ${isActive ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>
 									{link.label}
@@ -89,7 +85,7 @@ const AppHeader = () => {
 				</div>
 				<nav className="flex flex-col items-center justify-center h-full -mt-16 space-y-8">
 					{navLinks.map((link) => {
-						const isActive = location.pathname === link.path;
+						const isActive = link.path === '/' ? location.pathname === link.path : location.pathname.startsWith(link.path);
 						return (
 							<Link
 								key={link.path}

@@ -34,7 +34,7 @@ const Card = ({
 	
 	const backgrounds = {
 		white: 'bg-white',
-		gray: 'bg-gray-50',
+		gray: 'bg-gray-100',
 		transparent: 'bg-transparent'
 	};
 	

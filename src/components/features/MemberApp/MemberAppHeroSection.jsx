@@ -7,17 +7,14 @@ import appDownload from '../../../assets/app-screenshots/member/download-guide.p
 
 const MemberAppHeroSection = () => {
 	return (
-		// min-h-screen으로 변경하여 다양한 화면 높이에 대응합니다.
 		<div className="w-full min-h-screen relative overflow-hidden bg-gradient-to-br from-cyan-50 to-white">
-			{/* 왼쪽 배경 도형 SVG */}
 			<svg
-				width="960"
-				height="895"
+				// width="960"
+				// height="895"
 				viewBox="0 0 960 895"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				// 위치를 % 단위로 변경하여 화면 크기가 변해도 일관된 위치를 유지합니다.
-				className="absolute left-[-15%] top-[-25%] w-auto h-full max-w-[60%] hidden lg:block"
+				className="absolute left-[-15%] lg:left-[-5%] top-[-%] w-auto h-full max-w-[150%] lg:max-w-[60%] block"
 				preserveAspectRatio="xMinYMin meet"
 			>
 				<path
@@ -27,34 +24,32 @@ const MemberAppHeroSection = () => {
 				/>
 			</svg>
 
-			{/* [수정] 메인 컨텐츠 영역: 헤더 높이를 고려하여 상단 패딩(pt-20, md:pt-24)을 추가합니다. */}
 			<div className="relative z-10 flex flex-col lg:flex-row items-center justify-center w-full min-h-screen px-6 pt-20 pb-12 md:pt-24 md:px-12 lg:px-8">
 
 				{/* 왼쪽 섹션: 타이틀 및 앱 다운로드 */}
-				{/* 모바일에서는 중앙 정렬, lg 이상에서는 왼쪽 정렬되도록 수정합니다. */}
-				<div className="w-full lg:flex-1 flex flex-col justify-center items-center lg:items-start text-center lg:text-left max-w-xl lg:max-w-2xl">
-					{/* text-white -> text-black 으로 변경 */}
-					<div className="flex flex-col justify-start items-center lg:items-start gap-4 text-black">
-						{/* 글자 크기를 화면 크기에 따라 여러 단계로 조절합니다. */}
+				<div className="w-full lg:flex-1 flex flex-col justify-center items-center lg:items-start text-center lg:text-left max-w-xl lg:max-w-2xl lg:pl-16 xl:pl-24">
+					<div className="flex flex-col justify-start items-center lg:items-start gap-4 text-white">
 						<p className="text-4xl sm:text-5xl lg:text-[56px]"
 						   style={{fontFamily: 'Inklipquid, sans-serif'}}>
-							더 쉬운 관리 더 큰 성공
+							더 쉬운 관리, 더 큰 성공
 						</p>
 						<p className="text-6xl sm:text-7xl lg:text-[80px] font-medium"
 						   style={{fontFamily: 'esamanru, sans-serif'}}>
 							회원 ∙ 강사 APP
 						</p>
 					</div>
-					<div className="flex flex-col justify-start items-center lg:items-start w-full max-w-md mt-10">
-						<p className="text-2xl font-bold text-black">앱 다운로드</p>
-						<a 
-							href="https://m.site.naver.com/1EcxT" 
-							target="_blank" 
+					<div className="flex flex-col justify-start items-start w-full max-w-md mt-10">
+						<p className="text-2xl text-white pl-5"
+						   style={{fontFamily: 'esamanru, sans-serif'}}
+						>앱 다운로드</p>
+						<a
+							href="https://m.site.naver.com/1EcxT"
+							target="_blank"
 							rel="noopener noreferrer"
-							className="cursor-pointer hover:opacity-80 transition-opacity duration-300"
+							className="cursor-pointer overflow-hidden"
 						>
 							<img src={appDownload} alt="App Download"
-							     className="w-full h-auto rounded-xl"
+							     className="w-full h-auto rounded-xl hover:scale-105 transition-transform duration-300"
 							/>
 						</a>
 					</div>
@@ -100,7 +95,7 @@ const MemberAppHeroSection = () => {
 				viewBox="0 0 928 1099"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
-				className="absolute bottom-[-10%] right-[-5%] w-[50%] h-auto opacity-60 hidden lg:block"
+				className="absolute bottom-[-10%] right-[-5%] w-[150%] lg:w-[50%] h-auto opacity-60 block"
 				preserveAspectRatio="xMaxYMax slice"
 			>
 				<path

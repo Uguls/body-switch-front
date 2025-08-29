@@ -1,22 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AutoImageSlider } from '../../ui/index.jsx'; // ui 컴포넌트 경로는 실제 프로젝트에 맞게 확인해주세요.
+import { AutoImageSlider } from '../../ui/index.jsx';
+import heroImage1 from '../../../assets/images/hero/management-program-1.png'
+import heroImage2 from '../../../assets/images/hero/management-program-2.jpg'
+import heroImage3 from '../../../assets/images/hero/management-program-3.jpg'
+import heroImage4 from '../../../assets/images/hero/management-program-4.jpg'
 
 const CapsuleImageSection = () => {
 	const heroImages = [
-		{ src: "/src/assets/images/hero/management-program-1.png", alt: "바디스위치 이미지 1" },
-		{ src: "/src/assets/images/hero/management-program-2.jpg", alt: "바디스위치 이미지 2" },
-		{ src: "/src/assets/images/hero/management-program-3.jpg", alt: "바디스위치 이미지 3" },
-		{ src: "/src/assets/images/hero/management-program-4.jpg", alt: "바디스위치 이미지 4" }
+		{ src: heroImage1, alt: "바디스위치 이미지 1" },
+		{ src: heroImage2, alt: "바디스위치 이미지 2" },
+		{ src: heroImage3, alt: "바디스위치 이미지 3" },
+		{ src: heroImage4, alt: "바디스위치 이미지 4" }
 	];
 
 	return (
 		<div
 			className="relative overflow-hidden w-full min-h-screen"
-			style={{ background: 'linear-gradient(135deg, #e0f7fa 20%, #ffffff 100%)' }}
+			style={{ background: 'linear-gradient(#e0f7fa 20%, #ffffff 100%)' }}
 		>
 			{/* --- 텍스트 & 버튼 통합 그룹 --- */}
-			{/* z-index를 20으로 설정하여 다른 모든 요소보다 위에 오도록 합니다. */}
 			<div
 				className="absolute flex flex-col items-start"
 				style={{
@@ -27,13 +30,11 @@ const CapsuleImageSection = () => {
 			>
 				{/* 메인 카피 & 브랜드명 */}
 				<div className="flex flex-col items-start">
-					{/* 텍스트 색상을 흰색으로 변경하여 어두운 오버레이 위에서 잘 보이게 합니다. */}
 					<p
 						className="text-left text-black"
 						style={{
 							fontFamily: 'InkLipquid, sans-serif',
 							fontSize: 'clamp(32px, 4vw, 56px)',
-							textShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)' // 가독성을 위한 그림자 효과 추가
 						}}
 					>
 						더 쉬운 관리, 더 큰 성공
@@ -43,7 +44,6 @@ const CapsuleImageSection = () => {
 						style={{
 							fontFamily: 'esamanru, sans-serif',
 							fontSize: 'clamp(48px, 6vw, 80px)',
-							textShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)' // 가독성을 위한 그림자 효과 추가
 						}}
 					>
 						바디스위치
@@ -52,7 +52,7 @@ const CapsuleImageSection = () => {
 
 				{/* 해시태그 */}
 				<p
-					className="text-left text-black/80" // 흰색에 투명도를 살짝 주어 계층감 표현
+					className="text-left text-black/60"
 					style={{
 						marginTop: 'clamp(16px, 2vh, 24px)',
 						fontFamily: 'Pretendard-Regular, sans-serif',
@@ -66,7 +66,7 @@ const CapsuleImageSection = () => {
 				</p>
 
 				{/* 도입문의 버튼 */}
-				<Link to="/introduction" style={{ marginTop: 'clamp(24px, 3vh, 32px)' }}>
+				<Link to="/inquiry" style={{ marginTop: 'clamp(24px, 3vh, 32px)' }}>
 					<div
 						className="flex justify-center items-center relative gap-2.5 rounded-[50px] bg-[#4ab3bc] hover:bg-[#3a9ba4] transition-colors duration-200"
 						style={{

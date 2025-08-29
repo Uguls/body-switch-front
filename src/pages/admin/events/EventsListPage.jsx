@@ -246,7 +246,7 @@ const EventsListPage = () => {
 				<div className="flex flex-col items-end w-full gap-6 p-6 rounded-lg bg-[#f4f5f7] my-8">
 					<div className="flex flex-col md:flex-row justify-between items-start w-full gap-6">
 						<div className="flex-1 w-full min-w-[300px]">
-							<p className="text-xl lg:text-2xl font-semibold text-black mb-3">키워드 검색</p>
+							<p className="text-xl lg:text-2xl font-semibold text-black mb-3" style={{ fontFamily: 'Pretendard-Regular, sans-serif' }}>키워드 검색</p>
 							<div className="flex items-center gap-2">
 								<input
 									type="text"
@@ -265,7 +265,7 @@ const EventsListPage = () => {
 							</div>
 						</div>
 						<div className="flex-1 w-full min-w-[300px]">
-							<p className="text-xl lg:text-2xl font-semibold text-black mb-3">게시일 검색</p>
+							<p className="text-xl lg:text-2xl font-semibold text-black mb-3" style={{ fontFamily: 'Pretendard-Regular, sans-serif' }}>게시일 검색</p>
 							<div className="flex items-center gap-2">
 								<input
 									type="date"

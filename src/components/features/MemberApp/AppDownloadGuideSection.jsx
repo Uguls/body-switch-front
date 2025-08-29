@@ -1,4 +1,5 @@
 import React from 'react';
+import downloadGuideImage from '../../../assets/app-screenshots/member/download-guide.png';
 
 // BODY SWITCH 로고 SVG
 const BodySwitchLogoSvg = () => (
@@ -21,19 +22,16 @@ const BodySwitchLogoSvg = () => (
 
 const AppDownloadSection = () => {
 	return (
-		// [수정] 패딩과 gap을 반응형으로 변경합니다.
 		<div className="flex flex-col justify-center items-center w-full gap-16 md:gap-20 px-6 sm:px-12 md:px-24 min-h-screen">
 			<div className="flex flex-col justify-start items-center relative gap-8">
-				{/* [수정] 텍스트 크기를 반응형으로 조절합니다. */}
 				<p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center text-[#333] break-words"
 				   style={{fontFamily: 'Inklipquid, sans-serif'}}>
 					더 쉬운 관리, 더 큰 성공
 				</p>
-				{/* [수정] 모바일에서는 세로(flex-col), 데스크톱에서는 가로(sm:flex-row)로 배치하고 정렬합니다. */}
 				<div className="flex flex-col sm:flex-row justify-center items-center relative gap-4 md:gap-6">
 					<BodySwitchLogoSvg />
-					{/* [수정] 텍스트 크기를 반응형으로 조절합니다. */}
-					<p className="text-2xl md:text-3xl lg:text-[40px] font-light text-left text-[#4d4d4d]">
+					<p className="text-2xl md:text-3xl lg:text-[40px] font-light text-left text-[#4d4d4d] whitespace-nowrap"
+					   style={{ fontFamily: 'esamanru-light, sans-serif' }}>
 						가 함께하겠습니다.
 					</p>
 				</div>
@@ -42,13 +40,13 @@ const AppDownloadSection = () => {
 				href="https://m.site.naver.com/1EcxT" 
 				target="_blank" 
 				rel="noopener noreferrer"
-				className="flex justify-start items-center relative overflow-hidden p-5 rounded-[15px] bg-white border border-white cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
+				className="flex justify-start items-center relative overflow-hidden cursor-pointer"
 			>
 				{/* [수정] 이미지의 최대 너비를 지정하여 전체 레이아웃을 해치지 않도록 합니다. */}
 				<img
-					src="/src/assets/app-screenshots/member/download-guide.png"
+					src={downloadGuideImage}
 					alt="app Dowload"
-					className="w-full max-w-lg"
+					className="w-full max-w-lg hover:scale-105 transition-transform duration-300"
 				/>
 			</a>
 		</div>

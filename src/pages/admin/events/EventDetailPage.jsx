@@ -65,9 +65,8 @@ const EventDetailPage = () => {
 			year: 'numeric',
 			month: '2-digit',
 			day: '2-digit'
-		}).replace(/\./g, '.').replace(/ /g, '');
+		}).replace(/\./g, '.').replace(/ /g, '').replace(/\.$/, '');
 	};
-
 	// 이벤트 상태 판단 함수
 	const getEventStatus = () => {
 		if (!event.status) return '이벤트';
@@ -102,7 +101,7 @@ const EventDetailPage = () => {
 				{/* 페이지 타이틀 */}
 				<div className="flex justify-center items-center self-stretch py-8 border-b-2 border-[#e6e6e6]"
 				     style={{fontFamily: 'esamanru, sans-serif'}}>
-					<p className="text-[40px] font-medium text-[#333]">이벤트</p>
+					<p className="text-[40px] font-medium text-[#333]" style={{fontFamily: 'esamanru, sans-serif'}}>이벤트</p>
 				</div>
 
 				{/* 어드민 컨트롤 버튼 영역 */}

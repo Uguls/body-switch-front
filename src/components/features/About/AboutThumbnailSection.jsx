@@ -1,4 +1,6 @@
 import React from 'react';
+import companyBackgroundImage from '../../../assets/images/about/company-background.png';
+import companyTitleImage from '../../../assets/images/about/company-title.png';
 
 const ThumbnailSection = () => {
 	return (
@@ -9,19 +11,19 @@ const ThumbnailSection = () => {
 					회사소개
 				</p>
 			</div>
-			
+
 			<div className="relative w-full">
 				<img
-					src="src/assets/images/about/company-background.png"
+					src={companyBackgroundImage}
 					alt="회사소개 배경"
 					className="w-full h-auto"
 				/>
-				
+
 				<div className="absolute inset-0 bg-black/80"></div>
-				
+
 				<div className="absolute inset-0 flex items-center justify-center">
 					<img
-						src="/src/assets/images/about/company-title.png"
+						src={companyTitleImage}
 						alt="회사소개 제목"
 						className="w-3/4 md:w-1/2 lg:w-2/5 h-auto transform scale-110 md:scale-100"
 					/>

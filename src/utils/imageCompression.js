@@ -36,11 +36,25 @@ export const compressBase64Image = (base64String, maxWidth = 1200, maxHeight = 1
       canvas.width = width;
       canvas.height = height;
 
+      // 투명도 지원을 위해 원본 이미지 포맷 확인
+      const hasTransparency = base64String.includes('data:image/png') || 
+                             base64String.includes('data:image/webp') ||
+                             base64String.includes('data:image/gif');
+
+      // PNG나 투명도가 있는 이미지의 경우 흰색 배경 설정하지 않음
+      if (!hasTransparency) {
+        // JPEG 등 투명도 없는 포맷의 경우 흰색 배경 설정
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, width, height);
+      }
+
       // 이미지 그리기
       ctx.drawImage(img, 0, 0, width, height);
 
-      // 압축된 base64 반환
-      const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+      // 압축된 base64 반환 - 투명도가 있으면 PNG로, 없으면 JPEG로
+      const outputFormat = hasTransparency ? 'image/png' : 'image/jpeg';
+      const outputQuality = hasTransparency ? undefined : quality; // PNG는 quality 파라미터 무시
+      const compressedBase64 = canvas.toDataURL(outputFormat, outputQuality);
       resolve(compressedBase64);
     };
 

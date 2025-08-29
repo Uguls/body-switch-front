@@ -33,12 +33,12 @@ const AdminAppCtaSection = () => {
 				<div className="flex flex-col justify-start items-start w-full gap-3 border-l-4 border-[#e6e6e6]">
 					<div className="self-stretch px-8">
 						<p className="text-4xl md:text-6xl font-medium text-left">
-							<span className="text-[#4d4d4d]">언제 어디서든 </span>
-							<span className="text-[#4ab3bc]">간편한 센터관리</span>
+							<span className="text-[#4d4d4d]" style={{fontFamily: 'esamanru, sans-serif'}}>언제 어디서든 </span>
+							<span className="text-[#4ab3bc]" style={{fontFamily: 'esamanru, sans-serif'}}>간편한 센터관리</span>
 						</p>
 					</div>
 					<div className="self-stretch px-8">
-						<p className="text-2xl md:text-[32px] font-light text-left text-[#4d4d4d]">
+						<p className="text-2xl md:text-[28px] font-extralight text-left text-[#4d4d4d]" style={{fontFamily: 'esamanru-light, sans-serif'}}>
 							출결·수강·매출을 한 번에, 시간·장소 제약 없이 모바일로 실시간 관리
 						</p>
 					</div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { OptimizedImage } from "../components/ui/Image/index.jsx";
-import { EventListSkeleton } from "../components/ui/Skeleton/index.jsx";
+import { SkeletonEventCard } from "../components/ui/index.jsx";
 
 const EventListPage = () => {
 	const [events, setEvents] = useState([]);
@@ -117,12 +117,17 @@ const EventListPage = () => {
 						</p>
 					</div>
 					{/* 탭 메뉴 스켈레톤 */}
-					<div className="flex justify-center items-center gap-px w-full max-w-[1200px]">
-						<div className="flex-1 md:w-80 h-12 bg-gray-200 rounded animate-pulse"></div>
-						<div className="flex-1 md:w-80 h-12 bg-gray-200 rounded animate-pulse ml-1"></div>
+					<div className="flex justify-center items-center gap-px w-full max-w-[1200px] mb-8">
+						<div className="flex-1 md:w-80 h-12 bg-gray-200 rounded animate-shimmer"></div>
+						<div className="flex-1 md:w-80 h-12 bg-gray-200 rounded animate-shimmer ml-1"></div>
 					</div>
-					{/* 로딩 스켈레톤 */}
-					<EventListSkeleton count={5} />
+					
+					{/* 이벤트 카드 스켈레톤 */}
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-[1536px]">
+						{[...Array(6)].map((_, index) => (
+							<SkeletonEventCard key={index} />
+						))}
+					</div>
 				</div>
 			</div>
 		);
@@ -195,14 +200,14 @@ const EventListPage = () => {
 									<OptimizedImage 
 										src={event.imageUrl} 
 										alt={event.title}
-										className="w-full h-full"
+										className="w-full h-full rounded-t-2xl md:rounded-2xl object-cover"
 										width={400}
 										height={256}
 										sizes="(max-width: 768px) 100vw, 30vw"
 									/>
 								</div>
 								{/* 텍스트 컨테이너 */}
-								<div className="flex flex-col justify-between items-start flex-grow p-4 md:p-6 transition-all duration-500 md:hover:flex-shrink">
+								<div className="flex flex-col justify-between items-start flex-grow p-4 md:p-6 transition-all duration-500 md:hover:flex-shrink h-full">
 									<div className="flex flex-col justify-start items-start self-stretch gap-3 md:gap-6">
 										<p className="text-[20px] md:text-[32px] font-semibold text-left text-[#333]">
 											{event.title}
@@ -211,9 +216,9 @@ const EventListPage = () => {
 											{event.subTitle}
 										</p>
 									</div>
-									<div className="flex justify-start items-center relative gap-2.5 mt-3 md:mt-0">
-										<p className="text-sm md:text-xl font-medium text-left text-[#b3b3b3]">
-											{event.createdAt}
+									<div className="flex justify-start items-center relative gap-2.5">
+										<p className="text-xs md:text-sm font-medium text-left text-[#ccc]">
+											{event.startDate}
 										</p>
 									</div>
 								</div>

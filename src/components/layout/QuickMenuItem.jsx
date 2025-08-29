@@ -1,4 +1,3 @@
-// src/components/MenuItem.jsx
 import React, { useState } from 'react';
 
 const MenuItem = ({ defaultIcon, hoverIcon, altText, href = '#', onClick }) => {
@@ -22,7 +21,7 @@ const MenuItem = ({ defaultIcon, hoverIcon, altText, href = '#', onClick }) => {
 			<img
 				src={isHovered ? hoverIcon : defaultIcon}
 				alt={altText}
-				className="w-16 h-16 transition-transform duration-200 ease-in-out group-hover:scale-110"
+				className="w-[200%] h-[200%] transition-transform duration-200 ease-in-out group-hover:scale-110"
 			/>
 		</a>
 	);

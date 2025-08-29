@@ -24,6 +24,7 @@ const STATUS_OPTIONS = ['미확인', '처리중', '완료'];
 
 const StatusDropdown = ({ currentStatus, onStatusChange }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [isAnimating, setIsAnimating] = useState(false);
 	const dropdownRef = useRef(null);
 
 	// 드롭다운 외부 클릭 시 닫기
@@ -41,7 +42,13 @@ const StatusDropdown = ({ currentStatus, onStatusChange }) => {
 
 	const handleSelect = (status) => {
 		if (status !== currentStatus) {
-			onStatusChange(status);
+			setIsAnimating(true);
+			
+			// 애니메이션 효과를 위해 약간의 지연 후 상태 변경
+			setTimeout(() => {
+				onStatusChange(status);
+				setIsAnimating(false);
+			}, 150);
 		}
 		setIsOpen(false);
 	};
@@ -54,9 +61,13 @@ const StatusDropdown = ({ currentStatus, onStatusChange }) => {
 			{/* 현재 상태 표시 버튼: 배경과 테두리 제거 */}
 			<button
 				onClick={() => setIsOpen(!isOpen)}
-				className="w-full flex justify-center items-center gap-1 bg-transparent border-none"
+				className={`w-full flex justify-center items-center gap-1 bg-transparent border-none transition-all duration-300 ${
+					isAnimating ? 'scale-105 opacity-80' : 'scale-100 opacity-100'
+				}`}
 			>
-        <span className={`text-base font-medium ${currentStyle.textColor}`}>
+        <span className={`text-base font-medium transition-colors duration-300 ${currentStyle.textColor} ${
+          isAnimating ? 'animate-pulse' : ''
+        }`}>
           {currentStatus}
         </span>
 				<svg
@@ -65,7 +76,9 @@ const StatusDropdown = ({ currentStatus, onStatusChange }) => {
 					viewBox="0 0 24 24"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
-					className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+					className={`w-5 h-5 transition-all duration-300 ${
+						isOpen ? 'rotate-180' : ''
+					} ${isAnimating ? 'animate-spin' : ''}`}
 				>
 					{/* path의 fill 속성에 직접 색상값 적용 */}
 					<path
@@ -77,12 +90,15 @@ const StatusDropdown = ({ currentStatus, onStatusChange }) => {
 
 			{/* 드롭다운 메뉴 */}
 			{isOpen && (
-				<div className="absolute top-full left-1/2 -translate-x-1/2 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-					{STATUS_OPTIONS.map(option => (
+				<div className="absolute top-full left-1/2 -translate-x-1/2 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 animate-fadeIn">
+					{STATUS_OPTIONS.map((option, index) => (
 						<div
 							key={option}
 							onClick={() => handleSelect(option)}
-							className={`px-4 py-2.5 text-base text-center cursor-pointer hover:bg-gray-100 ${STATUS_STYLES[option].textColor}`}
+							className={`px-4 py-2.5 text-base text-center cursor-pointer transition-all duration-200 hover:bg-gray-100 hover:scale-105 ${STATUS_STYLES[option].textColor}`}
+							style={{
+								animationDelay: `${index * 50}ms`
+							}}
 						>
 							{option}
 						</div>

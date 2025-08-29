@@ -27,14 +27,10 @@ const EventCreatePage = () => {
 	const modules = useMemo(() => ({
 		toolbar: {
 			container: [
-				['undo', 'redo'],
-				[{ 'header': [1, 2, false] }],
-				[{ 'align': [] }],
-				[{ 'color': [] }],
-				['bold', 'italic', 'underline', 'strike'],
-				[{ 'list': 'ordered'}, { 'list': 'bullet' }],
+				[{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+				['bold', 'italic', 'underline', 'strike', 'blockquote'],
+				[{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
 				['link', 'image'],
-				['code-block', 'blockquote'],
 				['clean']
 			],
 			handlers: {

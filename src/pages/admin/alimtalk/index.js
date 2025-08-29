@@ -1,0 +1,1 @@
+export { default as AlimTalkListPage } from './AlimTalkListPage.jsx';

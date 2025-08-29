@@ -12,12 +12,13 @@ const ProgramFeaturesSection = () => {
 				     style={{fontFamily: 'esamanru, sans-serif'}}>
 					<div className="self-stretch px-4 sm:px-6 lg:px-8">
 						<p className="text-2xl sm:text-4xl lg:text-6xl font-medium text-left break-words">
-							<span className="text-[#4ab3bc]">바디스위치</span>
-							<span className="text-[#4d4d4d]">만의 간편한 입장경험</span>
+							<span className="text-[#4ab3bc]" style={{fontFamily: 'esamanru, sans-serif'}}>바디스위치</span>
+							<span className="text-[#4d4d4d]" style={{fontFamily: 'esamanru, sans-serif'}}>만의 간편한 입장경험</span>
 						</p>
 					</div>
 					<div className="self-stretch px-4 sm:px-6 lg:px-8">
-						<p className="text-lg sm:text-2xl lg:text-[32px] font-light text-left text-[#4d4d4d]">
+						<p className="text-lg sm:text-2xl lg:text-[32px] font-light text-left text-[#4d4d4d]"
+						   style={{fontFamily: 'esamanru-light, sans-serif'}}>
 							출입도 스마트하게, 바디스위치만의 기술력
 						</p>
 					</div>
@@ -27,22 +28,22 @@ const ProgramFeaturesSection = () => {
 				<div className="flex flex-col lg:flex-row justify-between items-center w-full gap-8 sm:gap-12 lg:gap-16">
 					{/* 왼쪽 기능 목록 */}
 					<div className="flex flex-col justify-start items-start gap-4 sm:gap-6 lg:gap-8 flex-shrink-0 relative z-20">
-						<Button variant="primary" size="large" className="gap-2.5 text-[20px] sm:text-[28px] lg:text-[32px] xl:text-[42px]">
+						<div className="flex justify-center items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#4ab3bc]">
 							<CheckIcon />
-							모바일 등록으로 간편하게
-						</Button>
-						<Button variant="primary" size="large" className="gap-2.5 text-[20px] sm:text-[28px] lg:text-[32px] xl:text-[42px]">
+							<p className="text-2xl sm:text-[32px] md:text-[42px] font-bold text-left text-white whitespace-nowrap">모바일 등록으로 간편하게</p>
+						</div>
+						<div className="flex justify-center items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#4ab3bc]">
 							<CheckIcon />
-							안면인식으로 빠른 입장
-						</Button>
-						<Button variant="primary" size="large" className="gap-2.5 text-[20px] sm:text-[28px] lg:text-[32px] xl:text-[42px]">
+							<p className="text-2xl sm:text-[32px] md:text-[42px] font-bold text-left text-white whitespace-nowrap">안면인식으로 빠른 입장</p>
+						</div>
+						<div className="flex justify-center items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#4ab3bc]">
 							<CheckIcon />
-							무인 출입 시스템
-						</Button>
-						<Button variant="primary" size="large" className="gap-2.5 text-[20px] sm:text-[28px] lg:text-[32px] xl:text-[42px]">
+							<p className="text-2xl sm:text-[32px] md:text-[42px] font-bold text-left text-white whitespace-nowrap">무인 출입 시스템</p>
+						</div>
+						<div className="flex justify-center items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#4ab3bc]">
 							<CheckIcon />
-							인건비 절약
-						</Button>
+							<p className="text-2xl sm:text-[32px] md:text-[42px] font-bold text-left text-white whitespace-nowrap">인건비 절약</p>
+						</div>
 						<div className="flex flex-wrap justify-start items-center gap-x-4 gap-y-2">
 							<div className="flex justify-center items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#b3d9dd]">
 								<CheckIcon />

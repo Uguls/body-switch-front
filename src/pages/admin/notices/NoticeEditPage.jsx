@@ -93,9 +93,8 @@ const NoticeEditPage = () => {
 		<>
 			<style>{customQuillStyle}</style>
 			<div className="flex flex-col items-center w-full min-h-screen p-4 sm:p-8 bg-gray-50 font-sans">
-				<div className="flex justify-center items-center w-full max-w-6xl relative py-8 border-b-2 border-[#e6e6e6]"
-				     style={{fontFamily: 'esamanru, sans-serif'}}>
-					<p className="text-3xl md:text-4xl font-medium text-[#333]">공지사항 수정하기</p>
+				<div className="flex justify-center items-center w-full max-w-6xl relative py-8 border-b-2 border-[#e6e6e6]">
+					<p className="text-3xl md:text-4xl font-medium text-[#333]" style={{fontFamily: 'esamanru, sans-serif'}}>공지사항 수정</p>
 				</div>
 
 				<div className="flex justify-start w-full max-w-6xl py-6">

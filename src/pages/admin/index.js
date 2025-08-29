@@ -8,3 +8,6 @@ export * from './inquiries/index.js';
 export * from './notices/index.js';
 
 export * from './events/index.js';
+
+// Alimtalk pages
+export * from './alimtalk/index.js';

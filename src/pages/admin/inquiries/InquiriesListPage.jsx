@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../../api/apiClient.js';
-import { StatusDropdown, Pagination } from '../../../components/ui/index.jsx';
-import { AdminPageLayout, PageHeader, SearchFilters } from '../../../components/admin/index.js';
+import { StatusDropdown, Pagination, SkeletonTable } from '../../../components/ui/index.jsx';
+import { AdminPageLayout, PageHeader, SearchFilters, SuccessModal } from '../../../components/admin/index.js';
 
 const STATUS_TO_KOREAN = {
 	PENDING: '미확인',
@@ -35,6 +35,10 @@ const InquiriesListPage = () => {
 		startDate: '',
 		endDate: '',
 	});
+
+	// 모달 상태
+	const [showSuccessModal, setShowSuccessModal] = useState(false);
+	const [successMessage, setSuccessMessage] = useState('');
 
 	// 2. navigate 함수를 초기화합니다.
 	const navigate = useNavigate();
@@ -112,8 +116,9 @@ const InquiriesListPage = () => {
 		try {
 			await apiClient.patch(`/inquiries/${inquiryId}/change-status`, { status: newApiStatus });
 			
-			// 성공 시 알림창 표시
-			alert(`문의 상태가 "${newKoreanStatus}"(으)로 변경되었습니다.`);
+			// 성공 시 모달창 표시
+			setSuccessMessage(`문의 상태가 "${newKoreanStatus}"(으)로 변경되었습니다.`);
+			setShowSuccessModal(true);
 			
 		} catch (error) {
 			console.error('상태 변경 실패:', error);
@@ -130,6 +135,12 @@ const InquiriesListPage = () => {
 			// 데이터 새로고침
 			setSearchParams(prev => ({...prev}));
 		}
+	};
+
+	// 성공 모달 닫기 핸들러
+	const handleSuccessModalClose = () => {
+		setShowSuccessModal(false);
+		setSuccessMessage('');
 	};
 
 	// 3. 문의글 행 클릭 시 상세 페이지로 이동하는 함수를 추가합니다.
@@ -199,15 +210,16 @@ const InquiriesListPage = () => {
 	return (
 		<div className="pt-24 flex flex-col items-center w-full px-4 sm:px-6 lg:px-8">
 			<div className="w-full max-w-[1536px] mx-auto">
-				<div className="flex justify-center items-center w-full relative py-8 border-b-2 border-[#e6e6e6]"
-				     style={{fontFamily: 'esamanru, sans-serif'}}>
-					<p className="text-3xl md:text-[40px] font-medium text-black">문의내역</p>
+				<div className="flex justify-center items-center w-full relative py-8 border-b-2 border-[#e6e6e6]">
+					<p className="text-3xl md:text-[40px] font-medium text-black" style={{fontFamily: 'esamanru, sans-serif'}}>문의내역</p>
 				</div>
 
 				<div className="flex flex-col items-end w-full gap-6 p-6 rounded-lg bg-[#f4f5f7] my-8">
 					<div className="flex flex-col md:flex-row justify-between items-start w-full gap-6">
 						<div className="flex-1 w-full min-w-[300px]">
-							<p className="text-xl lg:text-2xl font-semibold text-black mb-3">키워드 검색</p>
+							<p className="text-xl lg:text-2xl font-semibold text-black mb-3"
+							   style={{ fontFamily: 'Pretendard-Regular, sans-serif' }}
+							>키워드 검색</p>
 							<div className="flex items-center gap-2">
 								<input
 									type="text"
@@ -221,7 +233,7 @@ const InquiriesListPage = () => {
 							</div>
 						</div>
 						<div className="flex-1 w-full min-w-[300px]">
-							<p className="text-xl lg:text-2xl font-semibold text-black mb-3">날짜 검색</p>
+							<p className="text-xl lg:text-2xl font-semibold text-black mb-3" style={{ fontFamily: 'Pretendard-Regular, sans-serif' }}>날짜 검색</p>
 							<div className="flex items-center gap-2">
 								<input type="date" value={startDateInput} onChange={e => setStartDateInput(e.target.value)} className="flex-grow h-12 px-4 rounded-lg bg-white border border-[#d9d9d9] text-black" />
 								<span className="text-black">~</span>
@@ -231,7 +243,7 @@ const InquiriesListPage = () => {
 						</div>
 					</div>
 					<div>
-						<p className="text-xl lg:text-2xl font-semibold text-black mb-3">상태 필터</p>
+						<p className="text-xl lg:text-2xl font-semibold text-black mb-3" style={{ fontFamily: 'Pretendard-Regular, sans-serif' }}>상태 필터</p>
 						<div className="flex items-center flex-wrap gap-2">
 							{['전체', '미확인', '처리중', '완료'].map(status => (
 								<button
@@ -262,7 +274,7 @@ const InquiriesListPage = () => {
 							<div className="w-[15%] px-2">상태</div>
 						</div>
 						{loading ? (
-							<div className="text-center py-16">로딩 중...</div>
+							<SkeletonTable rows={10} columns={7} />
 						) : error ? (
 							<div className="text-center py-16 text-red-500">{error}</div>
 						) : inquiries.length > 0 ? (
@@ -300,6 +312,13 @@ const InquiriesListPage = () => {
 					</div>
 				)}
 			</div>
+			
+			{/* 상태 변경 성공 모달 */}
+			<SuccessModal
+				isOpen={showSuccessModal}
+				onClose={handleSuccessModalClose}
+				message={successMessage}
+			/>
 		</div>
 	);
 };

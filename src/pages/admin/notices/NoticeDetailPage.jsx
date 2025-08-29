@@ -74,14 +74,12 @@ const NoticeDetailPage = () => {
 
 	return (
 		<div className="pt-24 flex flex-col items-center w-full min-h-screen bg-gray-50 font-sans">
-			<div className="flex flex-col items-center w-full max-w-4xl mx-auto px-4">
+			<div className="flex flex-col items-center w-full max-w-[1536px] mx-auto px-4">
 				{/* 페이지 타이틀 */}
-				<div className="flex justify-center items-center w-full relative py-8 border-b-2 border-[#e6e6e6]"
-				     style={{fontFamily: 'esamanru, sans-serif'}}>
-					<p className="text-3xl md:text-4xl font-medium text-[#333]">공지사항</p>
+				<div className="flex justify-center items-center w-full relative py-8 border-b-2 border-[#e6e6e6]">
+					<p className="text-3xl md:text-4xl font-medium text-[#333]" style={{fontFamily: 'esamanru, sans-serif'}}>공지사항</p>
 				</div>
 
-				{/* --- 요청하신 버튼 영역 --- */}
 				<div className="flex justify-between items-center self-stretch py-6">
 					{/* 뒤로가기 버튼 */}
 					<button
@@ -109,11 +107,9 @@ const NoticeDetailPage = () => {
 						</button>
 					</div>
 				</div>
-				{/* --- 요청하신 버튼 영역 끝 --- */}
-
 
 				{/* 상세 정보 헤더 */}
-				<div className="flex flex-col justify-start items-center w-full relative gap-2 mt-8 py-8 border-t border-gray-200">
+				<div className="flex flex-col justify-start items-center w-full relative gap-2 mt-8 py-8">
 					<div className="flex items-center gap-4">
 						<p className="text-xl md:text-2xl font-semibold text-left text-[#4ab3bc]">공지사항</p>
 						<div className="w-0.5 h-5 rounded-full bg-[#e6e6e6]"></div>
@@ -125,7 +121,7 @@ const NoticeDetailPage = () => {
 				</div>
 
 				{/* 상세 내용 본문 */}
-				<div className="w-full mt-8 mb-16 py-8 border-t border-gray-200">
+				<div className="w-full mt-8 mb-16 py-8">
 					<div
 						className="prose max-w-none text-left text-lg text-gray-800"
 						dangerouslySetInnerHTML={{ __html: notice.content }}

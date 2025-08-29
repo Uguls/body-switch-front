@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SocialIconLink } from './index.jsx';
 import { BrandLogo } from '../ui/index.jsx';
+import separatorLine from '../../assets/svgs/separator-line.svg';
 
 const Separator = () => (
-	<svg width="2" height="15" viewBox="0 0 2 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="hidden md:block" preserveAspectRatio="none">
-		<line x1="1" y1="0.5" x2="1" y2="14.5" stroke="#E6E6E6" strokeWidth="2"></line>
-	</svg>
+	<img src={separatorLine} alt="" className="hidden md:block" width="2" height="15" />
 );
 
 

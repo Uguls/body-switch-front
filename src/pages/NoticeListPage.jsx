@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { SkeletonTable } from "../components/ui/index.jsx";
 
 const NoticeListPage = () => {
 	const [notices, setNotices] = useState([]);
@@ -138,8 +139,24 @@ const NoticeListPage = () => {
 
 	if (loading) {
 		return (
-			<div className="pt-24 flex justify-center items-center h-screen text-2xl font-semibold">
-				로딩 중...
+			<div className="pt-24 flex flex-col items-center w-full px-4">
+				<div className="flex flex-col items-center max-w-[1536px] mx-auto w-full">
+					{/* 제목 섹션 */}
+					<div className="flex justify-center items-center w-full relative gap-2.5 py-8 border-b-2 border-[#e6e6e6] mb-8">
+						<p className="text-[32px] md:text-[40px] font-medium text-center text-[#333]"
+						   style={{fontFamily: 'esamanru, sans-serif'}}>
+							공지사항
+						</p>
+					</div>
+					
+					{/* 검색창 스켈레톤 */}
+					<div className="w-full max-w-md mb-8">
+						<div className="h-12 bg-gray-200 rounded animate-shimmer"></div>
+					</div>
+					
+					{/* 테이블 스켈레톤 */}
+					<SkeletonTable rows={8} columns={4} />
+				</div>
 			</div>
 		);
 	}

@@ -30,7 +30,7 @@ const AdminHeader = () => {
 					to="/bodyswitch-admin/inquiries"
 					className={`py-3 border-b-2 ${location.pathname.startsWith('/bodyswitch-admin/inquiries') ? 'border-[#4ab3bc]' : 'border-transparent'}`}
 				>
-					<p className={`text-sm lg:text-base font-bold ${location.pathname.startsWith('/bodyswitch-admin/inquiries') ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>
+					<p style={{fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger"}} className={`text-sm lg:text-base font-bold ${location.pathname.startsWith('/bodyswitch-admin/inquiries') ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>
 						문의내역
 					</p>
 				</Link>
@@ -38,7 +38,7 @@ const AdminHeader = () => {
 					to="/bodyswitch-admin/notices"
 					className={`py-3 border-b-2 ${location.pathname.startsWith('/bodyswitch-admin/notices') ? 'border-[#4ab3bc]' : 'border-transparent'}`}
 				>
-					<p className={`text-sm lg:text-base font-bold ${location.pathname.startsWith('/bodyswitch-admin/notices') ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>
+					<p style={{fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger"}} className={`text-sm lg:text-base font-bold ${location.pathname.startsWith('/bodyswitch-admin/notices') ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>
 						공지사항
 					</p>
 				</Link>
@@ -46,8 +46,16 @@ const AdminHeader = () => {
 					to="/bodyswitch-admin/events"
 					className={`py-3 border-b-2 ${location.pathname.startsWith('/bodyswitch-admin/events') ? 'border-[#4ab3bc]' : 'border-transparent'}`}
 				>
-					<p className={`text-sm lg:text-base font-bold ${location.pathname.startsWith('/bodyswitch-admin/events') ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>
+					<p style={{fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger"}} className={`text-sm lg:text-base font-bold ${location.pathname.startsWith('/bodyswitch-admin/events') ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>
 						이벤트
+					</p>
+				</Link>
+				<Link
+					to="/bodyswitch-admin/alimtalk"
+					className={`py-3 border-b-2 ${location.pathname.startsWith('/bodyswitch-admin/alimtalk') ? 'border-[#4ab3bc]' : 'border-transparent'}`}
+				>
+					<p style={{fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger"}} className={`text-sm lg:text-base font-bold ${location.pathname.startsWith('/bodyswitch-admin/alimtalk') ? 'text-[#4ab3bc]' : 'text-[#333]'}`}>
+						알림톡
 					</p>
 				</Link>
 
@@ -58,6 +66,7 @@ const AdminHeader = () => {
 				<button
 					onClick={handleLogout}
 					className="py-3 text-sm lg:text-base font-bold text-gray-500 hover:text-black transition-colors"
+					style={{fontFamily: 'Pretendard-Regular, sans-serif', fontSize: "larger"}}
 				>
 					로그아웃
 				</button>
